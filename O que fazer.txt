@@ -1,0 +1,3 @@
+Base de dados 1 (4 canais)
+ - Pegar 10 contrações de uma pessoa, tirar o RMS, pegar valor máximo e mínimo e fazer uma regra fuzzy com esses
+ - Fazer o mesmo com 10 pessoas, normalizando
