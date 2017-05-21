@@ -98,6 +98,31 @@ The introduction should briefly place the study in a broad context and highlight
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials}
+
+\subsection{The Icelandic 16-electrode	Electrohysterogram Database}
+
+A base de dados utilizada neste trabalho foi obtida entre 2008 e 2010 nos hospitais Landspitali University Hospital, Akureyri
+Hospital e Akureyri Primary Health Care Centre na Islândia. Foram feitas 122 medidas (recordings) em 45 mulheres grávidas, onde 32 foram analisadas repetidamente durante o período de gravidez, participando de duas a sete vezes. As sessões ocorreram no terceiro trimestre da gestação (112 gravações) e durante o trabalho de parto(labor) (10 gravações).  Esta base inclui dados de tocodinamometria, anotações de eventos e informações obstétricas das participantes. Todos os dados foram obtidos com o consentimento dos participantes e os protocolos foram aprovados pelo Comitê Nacional de Bioética da Islândia (VSN 02-006-V4) \cite{ref-islddatabase}.
+
+Um {\em grid} de $4x4$ eletrodos monopolares reutilizáveis de Ag/AgCl foi disposto no abdômen das pacientes conforme pode ser visto na Figura \ref{abd_elec} 
+
+
+ \begin{figure}[H]
+ 	\caption{\label{abd_elec} Posição ideal do {\em grid} de 16 eletrodos. Os eletrodos pretos representam o {\em ground} do paciente.}
+ 	\begin{center}
+ 		\includegraphics[scale=0.40]{imagens/abd_elec.png} 		
+ 	\end{center}
+ 	%\legend{\cite{ref-islddatabase}}
+ \end{figure}
+
+As medidas foram realizadas utilizando um equipamento de aquisição de dados fisiológicos de 16 canais (Embla A10). Um filtro {\em anti-aliasing} com corte em 100Hz foi usado, porém nenhum filtro passa-alta foi implementado. A taxa de amostragem do sinal foi de 200Hz, com uma resolução de 16 bits.  \cite{ref-islddatabase}.
+
+
+
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
 
 Materials and Methods should be described with sufficient details to allow others to replicate and build on published results. Please note that publication of your manuscript implicates that you must make all materials, data, computer code, and protocols associated with the publication available to readers. Please disclose at the submission stage any restrictions on the availability of materials or information. New methods and protocols should be described in detail while well-established methods can be briefly described and appropriately cited.
@@ -138,11 +163,15 @@ The text continues here.
 
 All figures and tables should be cited in the main text as Figure 1, Table 1, etc.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=3 cm]{imagens/beer.jpg}
-\caption{This is a figure, Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.}
-\end{figure}   
+ \begin{figure}[H]
+ 	\caption{\label{beer}This is a figure, Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.}
+ 	\begin{center}
+ 		\includegraphics[scale=0.40]{imagens/beer.jpg} 		
+ 	\end{center}
+ 	%\legend{\cite[]{pll analog}}
+ \end{figure}  
+
+
 
 \begin{table}[H]
 \caption{This is a table caption. Tables should be placed in the main text near to the first time they are cited.}
@@ -208,7 +237,12 @@ This section is not mandatory, but can be added to the manuscript if the discuss
 % References, variant A: internal bibliography
 %=====================================
 \begin{thebibliography}{999}
+	
 %% Reference 1
+\bibitem[Alexandersson, A. { \em et al} (2015)]{ref-islddatabase}
+Alexandersson, A. { \em et al}.  The Icelandic 16-electrode electrohysterogram database. {\em Sci. Data 2:150017} {\bf 2015}, doi: 10.1038/sdata.2015.17.	
+	
+%% Reference 2
 \bibitem[Author (year)]{ref-journal}
 Lastname, F.; Author, T. The title of the cited article. {\em Journal Abbreviation} {\bf 2008}, {\em 10}, 142-149.
 
