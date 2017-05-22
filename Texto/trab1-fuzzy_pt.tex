@@ -80,7 +80,7 @@ $^{1}$ \quad IEE-DELET; e-mail@e-mail.com}
 \abstract{A single paragraph of about 200 words maximum. For research articles, abstracts should give a pertinent overview of the work. We strongly encourage authors to use the following style of structured abstracts, but without headings: 1) Background: Place the question addressed in a broad context and highlight the purpose of the study; 2) Methods: Describe briefly the main methods or treatments applied; 3) Results: Summarize the article's main findings; and 4) Conclusion: Indicate the main conclusions or interpretations. The abstract should be an objective representation of the article, it must not contain results which are not presented and substantiated in the main text and should not exaggerate the main conclusions.}
 
 % Keywords
-\keyword{keyword 1; keyword 2; keyword 3 (list three to ten pertinent keywords specific to the article, yet reasonably common within the subject discipline.)}
+\keyword{Biomedical Instrumentation; Electromyography; Uterine Contractions; Fuzzy.)}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,12 +90,91 @@ $^{1}$ \quad IEE-DELET; e-mail@e-mail.com}
 
 \section{Introduction}
 
+Pregnancy is a physiological process that involves
+anatomic-functional, emotional and psychological changes as
+result of an increment of hormone that enables compliance
+with the metabolic demands of the fetus and the mother \cite{ref-weisswolfe}.
 
+From very early weeks of pregnancy, the uterus undergoes
+spontaneous irregular, contractions; these contractions become
+progressively more intense and regular towards the end of
+pregnancy and then they become strong enough to expel the
+fetus during labour. Hence, the uterine contractions during
+labour are categorized in three groups: Mild, Moderate and
+Strong. Also, as the labour progresses, the cervix dilates
+progressively from 0cm (closed) to 10cm (opened completely)
+to facilitate delivery of baby. Uterine contractions of desired
+frequency and strength are one of the major contributors
+towards opening the cervix progressively during labour \cite{ref-hatfield}.
+
+Currently, Tocograph as a part of Cardiotocography (CTG) is
+used to monitor the strength, duration and frequency of uterine
+contractions. It is a pressure sensor which picks up the
+contraction of the uterus and displays it on a graph with the Xaxis as time (seconds) and the Y-axis as pressure (mmHg).
+The sensor is placed at the fundus of the abdomen and is kept
+in place with the help of a belt. A sample Tocography is
+shown in Figure 1.
+
+Currently, Tocograph as a part of Cardiotocography (CTG) is
+used to monitor the strength, duration and frequency of uterine
+contractions. It is a pressure sensor which picks up the
+contraction of the uterus and displays it on a graph with the Xaxis as time (seconds) and the Y-axis as pressure (mmHg).
+The sensor is placed at the fundus of the abdomen and is kept
+in place with the help of a belt. A sample Tocography is
+shown in Figure \ref{toco}.
+
+ \begin{figure}[H]
+ 	\caption{\label{toco} Uterine contractions in Tocography signal.}
+ 	\begin{center}
+ 		\includegraphics[scale=0.45]{imagens/toco.jpg} 		
+ 	\end{center}
+ 	%\legend{\cite{ref-islddatabase}}
+ \end{figure}
+ 
+ There are several disadvantages of Tocography. Important
+ among them are:
+ 
+ \begin{itemize}[leftmargin=*,labelsep=5.8mm]
+ 	\item	Inter and intra-personal variation in interpretation of CTG
+ 	trace \cite{ref-hatfield}.
+ 	\item	Sometimes there is shift (either up or down) in baseline of
+ 	signal which makes interpretation difficult. This is known as
+ 	baseline wandering \cite{ref-hatfield}. 	
+ \end{itemize}
+ 
+ 
 
 The introduction should briefly place the study in a broad context and highlight why it is important. It should define the purpose of the work and its significance. The current state of the research field should be reviewed carefully and key publications cited. Please highlight controversial and diverging hypotheses when necessary. Finally, briefly mention the main aim of the work and highlight the principal conclusions. As far as possible, please keep the introduction comprehensible to scientists outside your particular field of research. Citing a journal paper \cite{ref-journal}.
 
 %Please use the command \citep{ref-journal} for the following MDPI journals, which use author-date citation: Arts, Econometrics, Economies, Genealogy, Humanities, IJFS, JRFM, Laws, Religions, Risks, Social Sciences.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials}
+
+\subsection{The Icelandic 16-electrode	Electrohysterogram Database}
+
+
+
+A base de dados utilizada neste trabalho foi obtida entre 2008 e 2010 nos hospitais Landspitali University Hospital, Akureyri
+Hospital e Akureyri Primary Health Care Centre na Islândia. Foram feitas 122 medidas (recordings) em 45 mulheres grávidas, onde 32 foram analisadas repetidamente durante o período de gravidez, participando de duas a sete vezes. As sessões ocorreram no terceiro trimestre da gestação (112 gravações) e durante o trabalho de parto(labor) (10 gravações).  Esta base inclui dados de tocodinamometria, anotações de eventos e informações obstétricas das participantes. Todos os dados foram obtidos com o consentimento dos participantes e os protocolos foram aprovados pelo Comitê Nacional de Bioética da Islândia (VSN 02-006-V4) \cite{ref-islddatabase}.
+
+Um {\em grid} de $4x4$ eletrodos monopolares reutilizáveis de Ag/AgCl foi disposto no abdômen das pacientes conforme pode ser visto na Figura \ref{abd_elec} 
+
+
+ \begin{figure}[H]
+ 	\caption{\label{abd_elec} Posição ideal do {\em grid} de 16 eletrodos. Os eletrodos pretos representam o {\em ground} do paciente.}
+ 	\begin{center}
+ 		\includegraphics[scale=0.40]{imagens/abd_elec.png} 		
+ 	\end{center}
+ 	%\legend{\cite{ref-islddatabase}}
+ \end{figure}
+
+As medidas foram realizadas utilizando um equipamento de aquisição de dados fisiológicos de 16 canais (Embla A10). Um filtro {\em anti-aliasing} com corte em 100Hz foi usado, porém nenhum filtro passa-alta foi implementado. A taxa de amostragem do sinal foi de 200Hz, com uma resolução de 16 bits.  \cite{ref-islddatabase}.
+
+
+
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
@@ -138,11 +217,15 @@ The text continues here.
 
 All figures and tables should be cited in the main text as Figure 1, Table 1, etc.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=3 cm]{imagens/beer.jpg}
-\caption{This is a figure, Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.}
-\end{figure}   
+ \begin{figure}[H]
+ 	\caption{\label{beer}This is a figure, Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.}
+ 	\begin{center}
+ 		\includegraphics[scale=0.40]{imagens/beer.jpg} 		
+ 	\end{center}
+ 	%\legend{\cite[]{pll analog}}
+ \end{figure}  
+
+
 
 \begin{table}[H]
 \caption{This is a table caption. Tables should be placed in the main text near to the first time they are cited.}
@@ -208,7 +291,34 @@ This section is not mandatory, but can be added to the manuscript if the discuss
 % References, variant A: internal bibliography
 %=====================================
 \begin{thebibliography}{999}
+	
 %% Reference 1
+\bibitem[T.L. Weissgerber, L.A. Wolfe (2006)]{ref-weisswolfe}
+T.L. Weissgerber, L.A. Wolfe. Physiological adaptation in early human pregnancy: adaptation to balance maternal-fetal demands. {\em Appl. Physiol. Nutr. Metab.} {\bf 2006}, {\em 31}, 1-11.
+
+%% Reference 2
+\bibitem[N. Hatfield (2013)]{ref-hatfield}
+N. Hatfield. References. In {\em Introductory maternity and paediatric nursing}, 3rd ed.; Wolters Kluwer Health: Albuquerque, USA, 2013; ISBN: 9781451147025.		
+
+%% Reference 4
+\bibitem[J. Bernardes, A. Costa-Pereira, D. Ayres-de-Campos, H. Van Geijn, and L. Pereira-Leite. (1997)]{ref-bernardes}
+J. Bernardes, A. Costa-Pereira, D. Ayres-de-Campos, H. Van Geijn, and L. Pereira-Leite. Evaluation of interobserver agreement of Cardiotocograms {\em International Journal of Gynaecology \& Obstetrics.} {\bf 1997}, {\em 57}, 33-37.	
+
+%% Reference 5
+\bibitem[N. Hatfield (2013)]{ref-hatfield}
+N. Hatfield. References. In {\em Introductory maternity and paediatric nursing}, 3rd ed.; Wolters Kluwer Health: Albuquerque, USA, 2013; ISBN: 9781451147025.	
+	
+%% Reference 3
+\bibitem[Alexandersson, A. { \em et al} (2015)]{ref-islddatabase}
+Alexandersson, A. { \em et al}.  The Icelandic 16-electrode electrohysterogram database. {\em Sci. Data 2:150017} {\bf 2015}, doi: 10.1038/sdata.2015.17.
+
+
+	
+
+
+
+
+%% Reference expl
 \bibitem[Author (year)]{ref-journal}
 Lastname, F.; Author, T. The title of the cited article. {\em Journal Abbreviation} {\bf 2008}, {\em 10}, 142-149.
 
