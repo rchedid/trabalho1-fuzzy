@@ -146,7 +146,7 @@ shown in Figure \ref{toco}.
  electromyogram (EMG), on the abdomen of the pregnant
  woman [electrohysterogram (EHG)], using fuzzy logic. As there is no current
  published information concerning fuzzy classification of EHG recordings, we propose to investigate, in this study, the potentialities of this method to determine a possible separation between contractions leading to a PD and contractions leading to
- delivery at term (DT).
+ delivery at term (DT), using fuzzy classification and avoiding CTG disavantages.
 
 
 
@@ -214,7 +214,7 @@ The differences in the electrical potentials of the electrodes were recorded, pr
 	\item S3 = E4–E3 (third channel).
 \end{itemize}
 
-Where the electrode disposal can be seen in Figure \ref{abd_elec4x4}. 
+A $2x2$ reusable monopolar eletrode grid (Ag/AgCl) was disposed on the pacients abdomen as can be seen in Figure \ref{abd_elec4x4}. 
 
  \begin{figure}[H]
  	\caption{\label{abd_elec4x4} Ideal position of the 4 electrode grid. }
@@ -224,10 +224,44 @@ Where the electrode disposal can be seen in Figure \ref{abd_elec4x4}.
  	%\legend{\cite{ref-islddatabase}}
  \end{figure}
  
- The measurements were performed using a sixteen channel multi-purpose physiological signal
- recorder (Embla A10), most commonly used for investigating sleep disorders. An anti-aliasing filter with
- a high cut-off frequency of 100 Hz was used but no high pass filter was used. The signal sampling rate was 200 Hz and the signal was digitized to 16 bits.  \cite{ref-islddatabase}.
+ The records are of 30-min
+ duration and consist of three channels. The sampling frequency was 20Hz and the signal was digitized to 16 bits. Prior to
+ sampling the signals were filtered using an analog threepole Butterworth filter with the bandwidth from 0 to 5 Hz \cite{ref-baseboa}
+ 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \section{Methods}
 
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \subsection{Pre-Processing}
+ 
+ The TPEHG database was chosen for providing more consistent data, information on the type of contraction (preterm and term) and using differential signals. Moreover, because it has been elaborated longer, it has more work based on its measurements, thus allowing the results obtained here to be compared in the future.
+ 
+ The selection of digital filters to remove noise from signals
+ before the processing may greatly influence the results.
+ A band-pass filter is needed. It was recognized that the uterine
+ EMG content ranges from 0 to $<$ 5 Hz \cite{ref-devedeux}.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -379,8 +413,15 @@ Verdenik, I.  Multilayer prediction model for preterm delivery. {\em PhD thesis}
 Kavšek, G.  Electromyographic activity of the uterus in threatened preterm delivery. {\em MsC thesis}, University of Ljubljana, Medical faculty, Ljubljana, 2001.
 
 
-	
+%% Reference 9
+\bibitem[Fele-Zorz G., Kavšek, G, Novak-Antolic Z., Jager F. (2008)]{ref-baseboa}
+Fele-Zorz G., Kavšek, G, Novak-Antolic Z., Jager F.  A comparison of various linear and non-linear signal processing techniques to separate uterine EMG records of term and pre-term delivery groups. {\em Med Biol Eng Comput} {\bf 2008}, {\em 46}, 911–922.	
 
+%% Reference 10
+\bibitem[Devedeux D., Marque C., Mansour S., Germain G., Duchene J. (1993)]{ref-devedeux}
+Devedeux D., Marque C., Mansour S., Germain G., Duchene J. Uterine electromyography: a critical review. {\em Am J Obstet Gynecol} {\bf 1993}, {\em 169(6)}, 1636–1653.	
+	
+ 
 
 
 
