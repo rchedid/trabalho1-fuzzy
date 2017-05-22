@@ -58,7 +58,7 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{Caracterização de Contrações Uterinas (birth contractions) usando técnicas fuzzy}
+\Title{A Fuzzy Approach for Birth Contractions Characterization}
 
 % If this is an expanded version of a conference paper, please cite it here: enter the full citation of your conference paper, and add $^\dagger$ in the end of the title of this article.
 %\conference{Title}
@@ -80,7 +80,7 @@ $^{1}$ \quad IEE-DELET; e-mail@e-mail.com}
 \abstract{A single paragraph of about 200 words maximum. For research articles, abstracts should give a pertinent overview of the work. We strongly encourage authors to use the following style of structured abstracts, but without headings: 1) Background: Place the question addressed in a broad context and highlight the purpose of the study; 2) Methods: Describe briefly the main methods or treatments applied; 3) Results: Summarize the article's main findings; and 4) Conclusion: Indicate the main conclusions or interpretations. The abstract should be an objective representation of the article, it must not contain results which are not presented and substantiated in the main text and should not exaggerate the main conclusions.}
 
 % Keywords
-\keyword{Biomedical Instrumentation; Electromyography; Uterine Contractions; Fuzzy.)}
+\keyword{Biomedical Instrumentation; Electrohystogram; Uterine Contractions; Fuzzy.)}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,7 +135,7 @@ shown in Figure \ref{toco}.
  	baseline wandering \cite{ref-marques}. 	
  \end{itemize}
  
- This paper focuses on using fuzzy classification techniques, using Electrohysterogram (EHG) signals, to detect the onset of labor. As there is no current
+ This paper focuses on using fuzzy classification techniques, using electrohysterogram (uterine electromyography records) signals, to detect the onset of labor. As there is no current
  published information concerning fuzzy classification of EHG recordings, we propose to investigate, in this study, the potentialities of this method to determine a possible separation between effective
  contractions and non-effective contractions without the CTG disavantages.
  
@@ -151,24 +151,52 @@ shown in Figure \ref{toco}.
 \subsection{The Icelandic 16-electrode	Electrohysterogram Database}
 
 
+The acquisitions of this database were executed between 2008 and 2010 in the Landspitali University Hospital, Akureyri Hospital and Akureyri Primary Health Care Centre in Iceland. Were performed 122 recordings on 45 pregnant woman, where 32 were measured repeatedly during
+the same pregnancy and participated in two to seven recordings. Sessions ocurred in the third
+trimester (112 recordings) and during labor (10 recordings). The database includes simultaneously recorded tocographs, annotations of events and obstetric information on participants. Informed consent was obtained from every participant and the protocol was approved by the National
+Bioethics Committee in Iceland (VSN 02-006-V4) \cite{ref-islddatabase}.
 
-A base de dados utilizada neste trabalho foi obtida entre 2008 e 2010 nos hospitais Landspitali University Hospital, Akureyri
-Hospital e Akureyri Primary Health Care Centre na Islândia. Foram feitas 122 medidas (recordings) em 45 mulheres grávidas, onde 32 foram analisadas repetidamente durante o período de gravidez, participando de duas a sete vezes. As sessões ocorreram no terceiro trimestre da gestação (112 gravações) e durante o trabalho de parto(labor) (10 gravações).  Esta base inclui dados de tocodinamometria, anotações de eventos e informações obstétricas das participantes. Todos os dados foram obtidos com o consentimento dos participantes e os protocolos foram aprovados pelo Comitê Nacional de Bioética da Islândia (VSN 02-006-V4) \cite{ref-islddatabase}.
 
-Um {\em grid} de $4x4$ eletrodos monopolares reutilizáveis de Ag/AgCl foi disposto no abdômen das pacientes conforme pode ser visto na Figura \ref{abd_elec} 
+A $4x4$ reusable monopolar eletrode grid (Ag/AgCl) was disposed on the pacients abdomen as can be seen in Figure \ref{abd_elec} 
 
 
  \begin{figure}[H]
- 	\caption{\label{abd_elec} Posição ideal do {\em grid} de 16 eletrodos. Os eletrodos pretos representam o {\em ground} do paciente.}
+ 	\caption{\label{abd_elec} Ideal position of the 16 electrode grid. The black dots represents the patient ground reference.}
  	\begin{center}
  		\includegraphics[scale=0.40]{imagens/abd_elec.png} 		
  	\end{center}
  	%\legend{\cite{ref-islddatabase}}
  \end{figure}
 
-As medidas foram realizadas utilizando um equipamento de aquisição de dados fisiológicos de 16 canais (Embla A10). Um filtro {\em anti-aliasing} com corte em 100Hz foi usado, porém nenhum filtro passa-alta foi implementado. A taxa de amostragem do sinal foi de 200Hz, com uma resolução de 16 bits.  \cite{ref-islddatabase}.
+The measurements were performed using a sixteen channel multi-purpose physiological signal
+recorder (Embla A10), most commonly used for investigating sleep disorders. An anti-aliasing filter with
+a high cut-off frequency of 100 Hz was used but no high pass filter was used. The signal sampling rate was 200 Hz and the signal was digitized to 16 bits.  \cite{ref-islddatabase}.
 
+\subsection{The Term-Preterm Electrohysterogram database}
 
+The EHG records included in the Term-Preterm Electrohysterogram database (TPEHG DB) were obtained from 1997 to 2005 at the University Medical Centre Ljubljana, Department of Obstetrics and Gynecology. The records were obtained during regular check-ups either around the 22nd week of gestation or around the 32nd week of gestation. In all, almost 1300 records were obtained during these years, and a preliminary database was built and used for studies by Ivan Verdenik, Gorazd Kavšek, Marjan Pajntar and Živa Novak-Antolič \cite{ref-verdenik},\cite{ref-kavsek}
+
+During the selection of records, all records with apparent recording artifacts, all records from pregnancies where labor was induced, and all records where delivery was performed using a Cesarean section, were rejected. The 300 resulted data are:
+
+\begin{itemize}[leftmargin=*,labelsep=5.8mm]
+	
+	\item	262 records were obtained during pregnancies where delivery was on term (duration of gestation at delivery $>$ 37 weeks):
+	
+	\begin{itemize}[leftmargin=*,labelsep=5.8mm]
+		\item 143 records were obtained before the 26th week of gestation and	
+		
+		\item 119 were obtained later during pregnancy, during or after the 26th week of gestation;	
+	\end{itemize}
+	
+	\item	38 records were obtained during pregnancies which ended prematurely (pregnancy duration $\leq$ 37 weeks), of which:
+	
+	\begin{itemize}[leftmargin=*,labelsep=5.8mm]
+		\item 19 records were obtained before the 26th week of gestation and
+			
+		\item	19 records were obtained during or after the 26th week of gestation.	
+	\end{itemize}
+	 	
+\end{itemize}
 
  
 
@@ -294,7 +322,7 @@ T.L. Weissgerber, L.A. Wolfe. Physiological adaptation in early human pregnancy:
 
 %% Reference 2
 \bibitem[N. Hatfield (2013)]{ref-hatfield}
-N. Hatfield. References. In {\em Introductory maternity and paediatric nursing}, 3rd ed.; Wolters Kluwer Health: Albuquerque, USA, {\bf 2013}; ISBN: 9781451147025.		
+N. Hatfield. References. In {\em Introductory maternity and paediatric nursing}, 3rd ed.; Wolters Kluwer Health: Albuquerque, USA,  2013; ISBN: 9781451147025.		
 
 %% Reference 3
 \bibitem[J. Bernardes, A. Costa-Pereira, D. Ayres-de-Campos, H. Van Geijn, and L. Pereira-Leite. (1997)]{ref-bernardes}
@@ -307,6 +335,14 @@ J. A. Marques, P. C. Cortez, J. P. Madeiro, and F. S. Schlindwein. Computerized 
 %% Reference 5
 \bibitem[Alexandersson, A. { \em et al} (2015)]{ref-islddatabase}
 Alexandersson, A. { \em et al}.  The Icelandic 16-electrode electrohysterogram database. {\em Sci. Data 2:150017} {\bf 2015}, doi: 10.1038/sdata.2015.17.
+
+%% Reference 6
+\bibitem[Verdenik, I. (2002)]{ref-verdenik}
+Verdenik, I.  Multilayer prediction model for preterm delivery. {\em PhD thesis}, University of Ljubljana, Medical faculty, Ljubljana, 2002.
+
+%% Reference 7
+\bibitem[Kavšek, G. (2001)]{ref-kavsek}
+Kavšek, G.  Electromyographic activity of the uterus in threatened preterm delivery. {\em MsC thesis}, University of Ljubljana, Medical faculty, Ljubljana, 2001.
 
 
 	
