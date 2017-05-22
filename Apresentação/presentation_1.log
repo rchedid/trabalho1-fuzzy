@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.21)  22 MAY 2017 04:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2017.5.21)  22 MAY 2017 05:44
 entering extended mode
 **presentation_1.tex
 (presentation_1.tex
@@ -1121,7 +1121,7 @@ Overfull \hbox (45.02242pt too wide) has occurred while \output is active
 
 ]
 LaTeX Font Info:    Font shape `T1/aess/m/it' in size <10.95> not available
-(Font)              Font shape `T1/aess/m/sl' tried instead on input line 157.
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 167.
 
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
@@ -1144,18 +1144,6 @@ Overfull \hbox (45.02242pt too wide) has occurred while \output is active
 [5
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 207.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 207.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `T1/aess/m/it' in size <6> not available
-(Font)              Font shape `T1/aess/m/sl' tried instead on input line 207.
-
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
  []
@@ -1170,17 +1158,25 @@ Overfull \hbox (45.02242pt too wide) has occurred while \output is active
 [7
 
 ]
+LaTeX Font Info:    Try loading font information for U+msa on input line 249.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 249.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Font shape `T1/aess/m/it' in size <6> not available
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 249.
+
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
  []
 
 [8
 
-] (presentation_1.vrb
-LaTeX Font Info:    Try loading font information for T1+aett on input line 3.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-))
+]
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
  []
@@ -1194,7 +1190,11 @@ Overfull \hbox (45.02242pt too wide) has occurred while \output is active
 
 [10
 
-] (presentation_1.vrb)
+] (presentation_1.vrb
+LaTeX Font Info:    Try loading font information for T1+aett on input line 3.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+))
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
  []
@@ -1202,16 +1202,13 @@ Overfull \hbox (45.02242pt too wide) has occurred while \output is active
 [11
 
 ]
-LaTeX Font Info:    Font shape `T1/aess/m/it' in size <9> not available
-(Font)              Font shape `T1/aess/m/sl' tried instead on input line 283.
-
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
  []
 
 [12
 
- <C:/Program Files/MiKTeX 2.9/tex/latex/beamer/art/beamericonarticle.pdf>]
+] (presentation_1.vrb)
 Overfull \hbox (45.02242pt too wide) has occurred while \output is active
  [][]  \T1/aess/m/n/6 ([])  
  []
@@ -1219,38 +1216,64 @@ Overfull \hbox (45.02242pt too wide) has occurred while \output is active
 [13
 
 ]
+LaTeX Font Info:    Font shape `T1/aess/m/it' in size <9> not available
+(Font)              Font shape `T1/aess/m/sl' tried instead on input line 325.
+
+Overfull \hbox (45.02242pt too wide) has occurred while \output is active
+ [][]  \T1/aess/m/n/6 ([])  
+ []
+
+[14
+
+ <C:/Program Files/MiKTeX 2.9/tex/latex/beamer/art/beamericonarticle.pdf>]
+Overfull \hbox (45.02242pt too wide) has occurred while \output is active
+ [][]  \T1/aess/m/n/6 ([])  
+ []
+
+[15
+
+]
 \tf@nav=\write6
 \tf@toc=\write7
 \tf@snm=\write8
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 335.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 335.
  (presentation_1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
-Package rerunfilecheck Info: File `presentation_1.out' has not changed.
-(rerunfilecheck)             Checksum: 21DA0B62A5F3CFCA0F61740453CFBB13;407.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 335.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 335.
+
+
+Package rerunfilecheck Warning: File `presentation_1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `presentation_1.out':
+(rerunfilecheck)             Before: 3F093C118342D3FBDDC88855EB51E5D9;406
+(rerunfilecheck)             After:  21C6907847E7A43D45E20C8D44F28AD7;339.
  ) 
 Here is how much of TeX's memory you used:
- 18145 strings out of 493673
- 340075 string characters out of 3143960
+ 18152 strings out of 493673
+ 340138 string characters out of 3143960
  419997 words of memory out of 3000000
- 20964 multiletter control sequences out of 15000+200000
+ 20967 multiletter control sequences out of 15000+200000
  39915 words of font info for 81 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  56i,16n,69p,780b,810s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss17.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmss9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmssi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mssi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pf
-b>
-Output written on presentation_1.pdf (13 pages, 205486 bytes).
+pdfTeX warning (dest): name{Outline0.2.1.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss17.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmss9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmssi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmssi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+si9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on presentation_1.pdf (15 pages, 220402 bytes).
 PDF statistics:
- 468 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
+ 524 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
  149 words of extra memory for PDF output out of 10000 (max. 10000000)
 
