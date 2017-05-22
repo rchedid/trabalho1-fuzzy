@@ -58,7 +58,7 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{A Fuzzy Approach for Birth Contractions Characterization}
+\Title{A Fuzzy Approach for Term and Preterm Identification}
 
 % If this is an expanded version of a conference paper, please cite it here: enter the full citation of your conference paper, and add $^\dagger$ in the end of the title of this article.
 %\conference{Title}
@@ -95,23 +95,29 @@ anatomic-functional, emotional and psychological changes as
 result of an increment of hormone that enables compliance
 with the metabolic demands of the fetus and the mother \cite{ref-weisswolfe}.
 
-From very early weeks of pregnancy, the uterus undergoes
-spontaneous irregular, contractions; these contractions become
-progressively more intense and regular towards the end of
-pregnancy and then they become strong enough to expel the
-fetus during labour. Hence, the uterine contractions during
-labour are categorized in three groups: Mild, Moderate and
-Strong. Also, as the labour progresses, the cervix dilates
-progressively from 0cm (closed) to 10cm (opened completely)
-to facilitate delivery of baby. Uterine contractions of desired
-frequency and strength are one of the major contributors
-towards opening the cervix progressively during labour \cite{ref-hatfield}.
+Despite being a natural process in women, pregnancy could
+generate some health complications, constituting a significant
+proportion of the global burden of maternal mortality and
+morbidity. That is why to monitor both an adequate
+adaptation of the women to all the physiological changes as
+well as the correct development of the fetus are important.
+According to the World Health Organization (WHO)
+complications during pregnancy are a leading cause of death
+among women of reproductive age. In 2015, the maternal mortality (women death during pregnancy and childbirth, or after them) was 216 per 100.000 live births. Virtually
+all of these deaths occurred in low-income countries but most
+of them could have been avoided \cite{ref-twb}. One of the major
+complications during pregnancy is preterm labor (less than 37
+weeks of gestation). Preterm labor and subsequent preterm
+birth is the primary cause of neonatal mortality and
+neurological morbidity in the short and long term. Its
+frequency varies between 5\% and 12\% in developed regions
+of the world, but can be up to 40\% in the poorest regions \cite{ref-villa}. 
 
 
 Currently, Tocograph as a part of Cardiotocography (CTG) is
 used to monitor the strength, duration and frequency of uterine
 contractions. It is a pressure sensor which picks up the
-contraction of the uterus and displays it on a graph with the Xaxis as time (seconds) and the Y-axis as pressure (mmHg).
+contraction of the uterus and displays it on a graph with the X-axis as time (seconds) and the Y-axis as pressure (mmHg).
 The sensor is placed at the fundus of the abdomen and is kept
 in place with the help of a belt. A sample Tocography is
 shown in Figure \ref{toco}.
@@ -135,10 +141,12 @@ shown in Figure \ref{toco}.
  	baseline wandering \cite{ref-marques}. 	
  \end{itemize}
  
- This paper focuses on using fuzzy classification techniques, using electrohysterogram (uterine electromyography records) signals, to detect the onset of labor. As there is no current
- published information concerning fuzzy classification of EHG recordings, we propose to investigate, in this study, the potentialities of this method to determine a possible separation between effective
- contractions and non-effective contractions without the CTG disavantages.
- 
+ The purpose of this work is to evaluate the possibility of early detection of preterm delivery (PD), by means
+ of characterization of the contractions, obtained by uterine
+ electromyogram (EMG), on the abdomen of the pregnant
+ woman [electrohysterogram (EHG)], using fuzzy logic. As there is no current
+ published information concerning fuzzy classification of EHG recordings, we propose to investigate, in this study, the potentialities of this method to determine a possible separation between contractions leading to a PD and contractions leading to
+ delivery at term (DT).
 
 
 
@@ -197,6 +205,28 @@ During the selection of records, all records with apparent recording artifacts, 
 	\end{itemize}
 	 	
 \end{itemize}
+
+The differences in the electrical potentials of the electrodes were recorded, producing 3 channels:
+
+\begin{itemize}[leftmargin=*,labelsep=5.8mm]
+	\item S1 = E2–E1 (first channel);
+	\item S2 = E2–E3 (second channel);
+	\item S3 = E4–E3 (third channel).
+\end{itemize}
+
+Where the electrode disposal can be seen in Figure \ref{abd_elec4x4}. 
+
+ \begin{figure}[H]
+ 	\caption{\label{abd_elec4x4} Ideal position of the 4 electrode grid. }
+ 	\begin{center}
+ 		\includegraphics[scale=0.50]{imagens/abd_elec4x4.png} 		
+ 	\end{center}
+ 	%\legend{\cite{ref-islddatabase}}
+ \end{figure}
+ 
+ The measurements were performed using a sixteen channel multi-purpose physiological signal
+ recorder (Embla A10), most commonly used for investigating sleep disorders. An anti-aliasing filter with
+ a high cut-off frequency of 100 Hz was used but no high pass filter was used. The signal sampling rate was 200 Hz and the signal was digitized to 16 bits.  \cite{ref-islddatabase}.
 
  
 
@@ -321,26 +351,30 @@ This section is not mandatory, but can be added to the manuscript if the discuss
 T.L. Weissgerber, L.A. Wolfe. Physiological adaptation in early human pregnancy: adaptation to balance maternal-fetal demands. {\em Appl. Physiol. Nutr. Metab.} {\bf 2006}, {\em 31}, 1-11.
 
 %% Reference 2
-\bibitem[N. Hatfield (2013)]{ref-hatfield}
-N. Hatfield. References. In {\em Introductory maternity and paediatric nursing}, 3rd ed.; Wolters Kluwer Health: Albuquerque, USA,  2013; ISBN: 9781451147025.		
+\bibitem[The World Bank (2017)]{ref-twb}
+The World Bank. Maternal mortality ratio. Available online: http://data.worldbank.org/indicator/SH.STA.MMRT? (accessed on 9 May 2017).
 
 %% Reference 3
+\bibitem[Villanueva L. A., Contreras A. K., Pichardo M., Rosales L. J. (2008)]{ref-villa}
+Villanueva L. A., Contreras A. K., Pichardo M., Rosales L. J. Perfil epidemiológico del parto prematuro {\em Ginecol Obstet Mex.} {\bf 2008}, {\em 76}, 542-548. 
+
+%% Reference 4
 \bibitem[J. Bernardes, A. Costa-Pereira, D. Ayres-de-Campos, H. Van Geijn, and L. Pereira-Leite. (1997)]{ref-bernardes}
 J. Bernardes, A. Costa-Pereira, D. Ayres-de-Campos, H. Van Geijn, and L. Pereira-Leite. Evaluation of interobserver agreement of Cardiotocograms {\em International Journal of Gynaecology \& Obstetrics.} {\bf 1997}, {\em 57}, 33-37.
 
-%% Reference 4
+%% Reference 5
 \bibitem[J. A. Marques, P. C. Cortez, J. P. Madeiro, and F. S. Schlindwein (2013)]{ref-marques}
 J. A. Marques, P. C. Cortez, J. P. Madeiro, and F. S. Schlindwein. Computerized Cardiotocography analysis system based on Hilbert Transform {\em Expert System with Applications.} {\bf 2013}, {\em 40}, 7159-7658.		
 	
-%% Reference 5
+%% Reference 6
 \bibitem[Alexandersson, A. { \em et al} (2015)]{ref-islddatabase}
 Alexandersson, A. { \em et al}.  The Icelandic 16-electrode electrohysterogram database. {\em Sci. Data 2:150017} {\bf 2015}, doi: 10.1038/sdata.2015.17.
 
-%% Reference 6
+%% Reference 7
 \bibitem[Verdenik, I. (2002)]{ref-verdenik}
 Verdenik, I.  Multilayer prediction model for preterm delivery. {\em PhD thesis}, University of Ljubljana, Medical faculty, Ljubljana, 2002.
 
-%% Reference 7
+%% Reference 8
 \bibitem[Kavšek, G. (2001)]{ref-kavsek}
 Kavšek, G.  Electromyographic activity of the uterus in threatened preterm delivery. {\em MsC thesis}, University of Ljubljana, Medical faculty, Ljubljana, 2001.
 
