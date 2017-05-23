@@ -6,12 +6,10 @@ close all;
 
 path = 'C:\Users\raiss\Desktop\MestradoGIT\trabalho1-fuzzy\BasesDeDados\Base1\Dados\';
 prefix = 'tpehg';
-file = '1751';
+file = '1735';
 extension = '.dat';
 
 
-start = 210;
-stop = 310;
 
 
 fid = fopen(strcat(path,prefix,file,extension),'r');
@@ -28,34 +26,47 @@ taxaAquisicao = 20;
 % ordem = 5;
 ganho = 13107;
 offset = 2;
-step = 0.5;
+% step = 0.5;
 
 % Ajuste dos sinais (retirando 180s iniciais e finais como recomendado pela base)
 inicio = 3600;
 fim = size(sinais,2) - 3600;
 
 %%%% VISUALIZACAO DOS 3 CANAIS FILTRADOS (0.08 - 4Hz)
-figure('pos',[50 50 900 600]);
-hold on;
+% figure('pos',[50 50 900 600]);
+hold off;
 cont = 0;
-for i = 2:4:10
+
+start = 14000;
+stop = 16500;
+
+for i = 10:10
     cont = cont + 1;
     sinal = sinais(i,inicio:fim)/ganho;
-    %vetorTempo = (1:size(sinal,2))/taxaAquisicao;
-   
-    sinal = sinal + offset * step;
-    legenda = int2str(i);
-    plot(sinal,'DisplayName',legenda);
+%     sinal = sinais(i,start:stop)/ganho;
+% 
+%     RMS = rms(sinal)
+%     VAR = var(sinal)
+
+    %sinal = windowed_rms(sinal, 6, 2, 1);
+    sinal = Retificar(sinal);
+    sinal = MediaMovel(sinal,0.02);
+    sinal = FiltroPB(sinal, 0.09,20,8);
+
+%     legenda = int2str(i);
     
-    hold on;
+     plot(sinal);
+%     
+%     hold on;
     offset = offset - 1;
 end
 
-title('3 bipolar channels (Filtered 0.08 Hz to 4 Hz)');
-xlabel('Time (s)');
-ylabel('Signals (mV)');
-lgd = legend('show');
-lgd.FontSize = 16;
+
+% title('3 bipolar channels (Filtered 0.08 Hz to 4 Hz)');
+% xlabel('Time (s)');
+% ylabel('Signals (mV)');
+% lgd = legend('show');
+% lgd.FontSize = 16;
 %%
 %
 % %FFT
