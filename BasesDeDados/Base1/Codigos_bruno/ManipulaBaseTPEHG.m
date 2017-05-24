@@ -13,21 +13,22 @@ fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat
 sinais = fread(fid,[12,inf],'*int16'); % lê os sinais do arquivo em int16
 sinais = double(sinais);
 
-% PARAMETROS
-taxaAquisicao = 20;
-% baixa = 0.8;
-% alta = 3;
-% ordem = 5;
-ganho = 13107;
-offset = 2;
-% step = 0.5;
+%% PARAMETROS
+    taxaAquisicao = 20; %Taxa de aquisição da base de dados
 
-%discard_size = 10;   %propósito de teste
-%M(1,:) = linspace(1,100);
-%M(2,:) = linspace(1,100);
-%M = M(:,1+discard_size:end)
+    %Parâmetros do segmentador
+    Smooth_window = 30*taxaAquisicao; %this is the window length used for smoothing your signal 
+    DURATION = 0.05*taxaAquisicao;    %Number of the samples that the signal should stay
+    threshold_style = 1;              %Set it 1 to have an adaptive threshold and set it 0
+                                      % to manually select the threshold from a plot
+    gr = 0;                           %Make it 1 if you want a plot and 0 when you dont want a plot
+    canal_analizado = 2;              %Seleciona o canal que se quer segmentar
+    %----------------------------------------------------------------------
+    
+    filt = 1; %define filtro a ser usado (1: 0.08Hz to 4Hz. 2: 0.3Hz to 3Hz 3: 0.3Hz to 4Hz)
 
-% Ajuste dos sinais (retirando 180s iniciais e finais como recomendado pela base)
+    
+%% Ajuste dos sinais (retirando 180s iniciais e finais como recomendado pela base)
 % "When using filtered channels, note that the first and last 180 seconds of the 
 % signals should be ignored since these intervals contain transient effects
 % of the filters."
@@ -42,17 +43,9 @@ sinais_mv = sinais.*5./(2^16); %gera os sinais em milivolts
 %digitized at 20 samples per second per channel with 16-bit resolution over 
 %a range of ±2.5 millivolts
 
-%%%% VISUALIZACAO DOS 3 CANAIS FILTRADOS (0.08 - 4Hz)
-
-%sinais_mv([1,5,9],:) = []; % remove os sinais não filtrados (não
-%interessam) e deixa os que tem filtro
-
-filt = 1; %define filtro a ser usado (1: 0.08Hz to 4Hz. 2: 0.3Hz to 3Hz 3: 0.3Hz to 4Hz)
+%% VISUALIZACAO DOS 3 CANAIS FILTRADOS (0.08 - 4Hz)
 
 sinais_mv = sinais_mv([1+filt,5+filt,9+filt],:); %seleciona os sinais do filtro escolhido
-
-%sinais_mv = abs(sinais_mv); % Retifica o sinal
-
 
 subplot(4,1,1);   % plota os 3 canais
 plot(t,sinais_mv(1,:));
@@ -64,7 +57,7 @@ subplot(4,1,3);
 plot(t,sinais_mv(3,:),'r'); 
 title('Canal 3')
 
-
+%% Pré processamento do sinal
 sinais_rect = abs(sinais_mv); % Retifica o sinal
 %[sinais_upper,sinais_lower] = envelope(sinais_mv,1500,'rms');
 sinal_rms = windowed_rms(sinais_rect(1,:), 100, 10, 1);
@@ -72,19 +65,14 @@ sinal_rms = windowed_rms(sinais_rect(1,:), 100, 10, 1);
 size_sinal_rms = size(sinal_rms,2); %pega o númer ode amostras do sinal rms
 t_rms = linspace(0,size_sinal_rms-1,size_sinal_rms); %gera o vetor do tempo em samples 
 
-Smooth_window = 30*taxaAquisicao;
-DURATION = 0.05*taxaAquisicao;
-threshold_style = 1;
-gr = 0;
+timestamp = envelop_hilbert_v2(sinais_mv(2,:),Smooth_window,threshold_style,DURATION,gr);
 
-alarm = envelop_hilbert_v2(sinais_mv(2,:),Smooth_window,threshold_style,DURATION,gr);
-
-alarm2 = round(resample(alarm,size_sinais,size(alarm,2)));
-
+timestamp2 = round(resample(timestamp,size_sinais,size(timestamp,2))); %Ajusta o tamanho do timestamp
 
 subplot(4,1,4);
-plot(t,alarm2); 
-title('Canal 3')
+plot(t,timestamp2);
+
+title(sprintf('Janelamento do Canal %d',canal_analizado))
 %{
 
 plot(t_rms,sinal_rms);
