@@ -6,7 +6,7 @@ close all;
 
 path = 'C:\tpehgdb\';
 prefix = 'tpehg';
-file = '572';
+file = '618';
 extension = '.dat';
 
 fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat
@@ -75,16 +75,15 @@ t_rms = linspace(0,size_sinal_rms-1,size_sinal_rms); %gera o vetor do tempo em s
 Smooth_window = 30*taxaAquisicao;
 DURATION = 0.05*taxaAquisicao;
 threshold_style = 1;
-gr = 1;
-
+gr = 0;
 
 alarm = envelop_hilbert_v2(sinais_mv(2,:),Smooth_window,threshold_style,DURATION,gr);
 
-alarm2 = resample(alarm,31740,32339);
+alarm2 = round(resample(alarm,size_sinais,size(alarm,2)));
 
-tt = linspace(0,1600,32339)
-%subplot(4,1,4);
-%plot(t,alarm2); 
+
+subplot(4,1,4);
+plot(t,alarm2); 
 title('Canal 3')
 %{
 
