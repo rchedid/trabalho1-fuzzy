@@ -73,12 +73,24 @@ figure;
 inicio_c = [2084 3218 6745 9860 12280 14440 17410 19940 23540 26420 29650];
 fim_c = [2856 5685 8845 11080 13340 15660 18310 20770 24600 27310 30520];
 
-for i = 1:11
+l_plot = size(fim_c,2);   % Gera a disposição dos subplots automaticamente
+aux = round(sqrt(l_plot));
+for i = 1:100
+    if i*aux >= l_plot 
+        h_plot = i;
+        break;
+    end    
+end
+l_plot = aux;
+
+
+
+for i = 1:size(fim_c,2)
    
-    segmento{i} = sinais_mv(1,1+inicio_c(i):fim_c(i)); % corta fora a contração selecionada
+    segmento{i} = sinais_mv(1,1+inicio_c(i):fim_c(i)); %#ok<SAGROW> % corta fora a contração selecionada
     tempo{i} = (1:size(segmento{i},2)).*0.05; % Faz vetor de tempo correspondente em segunds
 
-    subplot(4,3,i);
+    subplot(h_plot,l_plot,i);
     plot(tempo{i},segmento{i});
     grid
     title(sprintf('Contração %d',i));
@@ -95,8 +107,8 @@ end
 
 %xlswrite('contracoes.xlsx',seg1,'seg1');
 
-
 %{ 
+
 
 %% Pré processamento do sinal
 sinais_rect = abs(sinais_mv); % Retifica o sinal
