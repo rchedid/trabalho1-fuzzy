@@ -137,17 +137,15 @@ for i = 1:size(fim_c,2)-1
 end 
 intervalo_med = (sum(inter)/(size(fim_c,2)-1))*periodo_amostra;
 
-% Escrevendo variaveis de interesse no excel com cabeçalho definido à mão
-cabecalho_excel = {'Contração','RMS','RMS_min','RMS_max','RMS_med','VAR','VAR_min','VAR_max','VAR_med'};
-xlswrite('FeaturesContracoes.xlsx',cabecalho_excel,file,'A1');
-xlswrite('FeaturesContracoes.xlsx',(1:size(fim_c,2))',file,'A2'); 
-xlswrite('FeaturesContracoes.xlsx',rms_seg',file,'B2');
-xlswrite('FeaturesContracoes.xlsx',rms_min,file,'C2');
-xlswrite('FeaturesContracoes.xlsx',rms_max,file,'D2');
-xlswrite('FeaturesContracoes.xlsx',rms_med,file,'E2');
-xlswrite('FeaturesContracoes.xlsx',var_seg',file,'F2');
-xlswrite('FeaturesContracoes.xlsx',var_min,file,'G2');
-xlswrite('FeaturesContracoes.xlsx',var_max,file,'H2');
-xlswrite('FeaturesContracoes.xlsx',var_med,file,'I2');
+coleta = 1;
+semana_parto = 40;
+caracteristicas(coleta,:) = [str2num(file) semana_parto rms_min rms_max rms_med var_min var_max var_med duracao_med freq_med intervalo_med];
 
-%clearvars -except inter_centr duracao_seg duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
+posicao_excel = strcat('A',num2str(coleta+1));
+
+% Escrevendo características no excel
+cabecalho_excel = {'Arquivo','SemanaParto','RMS_min','RMS_max','RMS_med','VAR_min','VAR_max','VAR_med','Dur_med','Freq_med','Inter_med'};
+xlswrite('FeaturesContracoes.xlsx',cabecalho_excel,'Features','A1');
+xlswrite('FeaturesContracoes.xlsx',caracteristicas,'Features',posicao_excel);
+
+clearvars -except duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
