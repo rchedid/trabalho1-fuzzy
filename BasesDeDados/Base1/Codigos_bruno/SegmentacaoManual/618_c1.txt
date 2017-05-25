@@ -1,0 +1,4 @@
+inicio_c = [2084 3218 6745 9860 12280 14440 17410 19940 23540 26420 29650];
+fim_c = [2856 5685 8845 11080 13340 15660 18310 20770 24600 27310 30520];
+
+canal_analizado = 1;              %Seleciona o canal que se quer segmentar
