@@ -41,7 +41,8 @@ discard_size = 180*taxaAquisicao; % 180 segundos multiplicado pela frequência de
 sinais = sinais(:,1+discard_size:end); % corta fora os primeiros 180 segundos do sinal filtrado
 size_sinais = size(sinais,2); %pega o númer ode amostras do sinal
 
-t = linspace(0,size_sinais-1,size_sinais)*0.05; %gera o vetor do tempo em segundos
+per_amostr = 1/taxaAquisicao; % período de amostragem
+t = linspace(0,size_sinais-1,size_sinais)*per_amostr; %gera o vetor do tempo em segundos
 t = linspace(0,size_sinais-1,size_sinais); %gera o vetor do tempo em samples
 
 sinais_mv = sinais.*5./(2^16); %gera os sinais em milivolts
@@ -66,12 +67,14 @@ title('Canal 3')
 
  %% Segmentação manual
 
-figure;
-
 % Inicio das contrações
 % Fim das contrações
+
 inicio_c = [2084 3218 6745 9860 12280 14440 17410 19940 23540 26420 29650];
 fim_c = [2856 5685 8845 11080 13340 15660 18310 20770 24600 27310 30520];
+
+%inicio_c = [10 30 50 70 90];   % para teste apenas
+%fim_c = [20 40 60 80 100];
 
 l_plot = size(fim_c,2);   % Gera a disposição dos subplots automaticamente
 aux = round(sqrt(l_plot));
@@ -82,13 +85,12 @@ for i = 1:100
     end    
 end
 l_plot = aux;
-
-
+figure;
 
 for i = 1:size(fim_c,2)
    
-    segmento{i} = sinais_mv(1,1+inicio_c(i):fim_c(i)); %#ok<SAGROW> % corta fora a contração selecionada
-    tempo{i} = (1:size(segmento{i},2)).*0.05; % Faz vetor de tempo correspondente em segunds
+    segmento{i} = sinais_mv(1,1+inicio_c(i):fim_c(i)); % corta fora a contração selecionada
+    tempo{i} = (1:size(segmento{i},2)).*per_amostr;  % Faz vetor de tempo correspondente em segunds
 
     subplot(h_plot,l_plot,i);
     plot(tempo{i},segmento{i});
@@ -104,6 +106,24 @@ for i = 1:size(fim_c,2)
     clear temp_rms
     clear temp_var
 end
+
+% pega duração média das contrações em segundos
+for i = 1:size(fim_c,2)
+    dura(i) = fim_c(i)  - inicio_c(i);
+end
+duracao_med = sum(dura)/size(fim_c,2)*per_amostr;
+
+% pega frequência entre as contrações em Hz
+for i = 1:size(fim_c,2)-1
+    inter_centr(i) = ((fim_c(i+1)  + inicio_c(i+1)) - (fim_c(i)  + inicio_c(i)))/2;
+end    
+freq_med = 1/((sum(inter_centr)/(size(fim_c,2)-1))*per_amostr);
+
+% pega intervalo entre inicio e fim de cada contração em segundos
+for i = 1:size(fim_c,2)-1
+    inter(i) = inicio_c(i+1) - fim_c(i); %     ((fim_c(i+1)  + inicio_c(i+1)) - (fim_c(i)  + inicio_c(i)))/2;
+end 
+intervalo_med = (sum(inter)/(size(fim_c,2)-1))*per_amostr
 
 %xlswrite('contracoes.xlsx',seg1,'seg1');
 
@@ -144,3 +164,5 @@ title('Canal 3')
 
 
 %}
+
+clearvars -except duracao_med intervalo_med freq_med rms_seg var_seg  %deixar aqui só o que nos interessa
