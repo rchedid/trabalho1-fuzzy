@@ -1,0 +1,11 @@
+Segundo um comentário de um nerdão tetudo no forum da mathworks:
+
+https://www.mathworks.com/matlabcentral/fileexchange/50289-a-set-of-entropy-measures-for-temporal-series--1d-signals-
+
+tem que fazer isso:
+
+Hi Jorge
+I found two small bugs in your code.
+In the function SampEn, line 73, you employ the variable "m" in the denominator ( count = count/(N-m-1); ) that it represents the embedding dimension for each iteration. However, in the original article, page 4, first column, 3th paragraph, "m" is always the original embedding dimension. So, you need replace the line with count = count/(N-dim-1); The article "Measuring complexity using FuzzyEn, ApEn, and SampEn" (DOI:10.1016/j.medengphy.2008.04.005) has a clear definition of sample entropy.
+The second bug is related with FuzzyEn function. As before, you used "m" and not "dim" variable when you compute phi (lines 75 and 80). Formula 8 in the original paper indicates clearly that "m" and not "m+1" is used to compute phi.
+I didn't check if SE, PermEn, CE and CCE shares the same type of bug due to I don't have access to the articles but ApEn doesn't have this bug.
