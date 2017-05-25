@@ -76,6 +76,8 @@ fim_c = [2856 5685 8845 11080 13340 15660 18310 20770 24600 27310 30520];
 %inicio_c = [10 30 50 70 90];   % para teste apenas
 %fim_c = [20 40 60 80 100];
 
+%% Cálculo das características 
+
 l_plot = size(fim_c,2);   % Gera a disposição dos subplots automaticamente
 aux = round(sqrt(l_plot));
 for i = 1:100
