@@ -2,3 +2,5 @@ inicio_c = [3362 6212 8869  17710 21160 23170 25120 26820];
 fim_c =    [5022 6955 11410 19620 22240 24180 26130 28670];
 
 canal_analizado = 2;              %Seleciona o canal que se quer segmentar
+
+sem_parto = 36.43;
