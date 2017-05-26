@@ -7,7 +7,7 @@ close all;
 
 path = 'C:\tpehgdb\';
 prefix = 'tpehg';
-file = '618';
+file = '1747';
 extension = '.dat';
 
 fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat
@@ -67,10 +67,16 @@ title('Canal 3')
 
 %% Segmentação manual
 
-% Vetores de inicio e fim das contrações
+coleta = 16;
 
-inicio_c = [2084 3218 6745 9860 12280 14440 17410 19940 23540 26420 29650];
-fim_c = [2856 5685 8845 11080 13340 15660 18310 20770 24600 27310 30520];
+% Vetores de inicio e fim das contrações
+inicio_c = [2211 12190 17970 22030 25900 29440];
+fim_c =    [5067 13580 20620 23560 28080 30990];
+
+canal_analizado = 1;              %Seleciona o canal que se quer segmentar
+
+sem_parto = 38;
+
 
 %%%% Cálculo das características 
 
@@ -88,7 +94,7 @@ figure;
 for i = 1:size(fim_c,2)
     
     % Separa a contração i
-    segmento{i} = sinais_mv(1,1+inicio_c(i):fim_c(i)); 
+    segmento{i} = sinais_mv(canal_analizado,1+inicio_c(i):fim_c(i)); 
     tempo{i} = (1:size(segmento{i},2)).*periodo_amostra; % Tempo em segundos
 
     % Plota contração i em subplots
@@ -137,15 +143,13 @@ for i = 1:size(fim_c,2)-1
 end 
 intervalo_med = (sum(inter)/(size(fim_c,2)-1))*periodo_amostra;
 
-coleta = 1;
-semana_parto = 40;
-caracteristicas(coleta,:) = [str2num(file) semana_parto rms_min rms_max rms_med var_min var_max var_med duracao_med freq_med intervalo_med];
+caracteristicas(coleta,:) = [str2num(file) sem_parto rms_min rms_max rms_med var_min var_max var_med duracao_med freq_med intervalo_med];
 
 posicao_excel = strcat('A',num2str(coleta+1));
 
 % Escrevendo características no excel
 cabecalho_excel = {'Arquivo','SemanaParto','RMS_min','RMS_max','RMS_med','VAR_min','VAR_max','VAR_med','Dur_med','Freq_med','Inter_med'};
 xlswrite('FeaturesContracoes.xlsx',cabecalho_excel,'Features','A1');
-xlswrite('FeaturesContracoes.xlsx',caracteristicas,'Features',posicao_excel);
+xlswrite('FeaturesContracoes.xlsx',caracteristicas(coleta,:),'Features',posicao_excel);
 
-clearvars -except duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
+clearvars -except caracteristicas duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
