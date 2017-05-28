@@ -1,6 +1,0 @@
-inicio_c = [4308 15770];
-fim_c =    [5023 16130];
-
-canal_analizado = 3;              %Seleciona o canal que se quer segmentar
-
-sem_parto = 40.43;
