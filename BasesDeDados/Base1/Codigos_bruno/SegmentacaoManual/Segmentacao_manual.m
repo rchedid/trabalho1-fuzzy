@@ -7,7 +7,7 @@ close all;
 
 path = 'C:\tpehgdb\';
 prefix = 'tpehg';
-file = '1747';
+file = '618';
 extension = '.dat';
 
 fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat
@@ -54,15 +54,60 @@ sinais_mv = sinais.*5./(2^16); %gera os sinais em milivolts
 
 sinais_mv = sinais_mv([1+filt,5+filt,9+filt],:); %seleciona os sinais do filtro escolhido
 
-subplot(3,1,1);   % plota os 3 canais
-plot(t,sinais_mv(1,:));
-title('Canal 1')
-subplot(3,1,2);
-plot(t,sinais_mv(2,:),'k');
-title('Canal 2')
-subplot(3,1,3);
-plot(t,sinais_mv(3,:),'r'); 
-title('Canal 3')
+mixed_plot = 1; % escolhe se o sinal será plotado separado de sua DWT (0) ou junto (1)
+
+
+%% "DENOISE" USANDO TRANSFORMADA DE WAVELET DISCRETA
+
+% decompor o sinal usando a transformada de wavelet discreta:
+f1 = sinais_mv(1,:);
+f2 = sinais_mv(2,:);
+f3 = sinais_mv(3,:);
+
+
+TPTR = 'modwtsqtwolog'; % threshold selection rule"
+SORH = 's'; % is for soft or hard thresholding
+SCAL = 'mln'; % defines multiplicative threshold rescaling
+N = 14; % Wavelet decomposition is performed at N level
+wname = 'dmey'; % is a character vector containing the name of the desired orthogonal wavelet
+
+sinais_mv_dwt(1,:) = wden(f1,TPTR,SORH,SCAL,N,wname);
+sinais_mv_dwt(2,:) = wden(f2,TPTR,SORH,SCAL,N,wname);
+sinais_mv_dwt(3,:) = wden(f3,TPTR,SORH,SCAL,N,wname);
+
+if mixed_plot
+    subplot(3,1,1);   % plota os 3 canais sem e com dwt
+    plot(t,sinais_mv(1,:),t,sinais_mv_dwt(1,:),'r');
+    title('Canal 1')
+    subplot(3,1,2);
+    plot(t,sinais_mv(2,:),t,sinais_mv_dwt(2,:),'r');
+    title('Canal 2')
+    subplot(3,1,3);
+    plot(t,sinais_mv(3,:),t,sinais_mv_dwt(3,:),'r'); 
+    title('Canal 3')
+else
+    subplot(3,1,1);   % plota os 3 canais
+    plot(t,sinais_mv_dwt(1,:),'r');
+    title('Canal 1')
+    subplot(3,1,2);
+    plot(t,sinais_mv_dwt(2,:),'r');
+    title('Canal 2')
+    subplot(3,1,3);
+    plot(t,sinais_mv_dwt(3,:),'r'); 
+    title('Canal 3')
+
+    figure;
+    subplot(3,1,1);   % plota os 3 com dwt
+    plot(t,sinais_mv(1,:));
+    title('Canal 1 dwt')
+    subplot(3,1,2);
+    plot(t,sinais_mv(2,:));
+    title('Canal 2 dwt')
+    subplot(3,1,3);
+    plot(t,sinais_mv(3,:)); 
+    title('Canal 3 dwt')
+end
+
 
 
 %% Segmentação manual
