@@ -1,3 +1,4 @@
+
 % Código para fazer a segmentação manual das contrações em cada canal de
 % cada aquisição
 
@@ -5,9 +6,19 @@ clc;
 clearvars;
 close all;
 
+coleta = 15;
+
+% Vetores de inicio e fim das contrações
+inicio_c = [2211 12190 17970 22030 25900 29440];
+fim_c =    [5067 13580 20620 23560 28080 30990];
+
+canal_analizado = 1;              %Seleciona o canal que se quer segmentar
+
+sem_parto = 38;
+
 path = 'C:\tpehgdb\';
 prefix = 'tpehg';
-file = '1022';
+file = '1747';
 extension = '.dat';
 
 fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat
@@ -18,8 +29,6 @@ sinais = double(sinais);
 
 %Parâmetros básicos
 taxaAquisicao = 20; %Taxa de aquisição da base de dados
-numero_de_contracoes = 11;
-canal_analizado = 1;              %Seleciona o canal que se quer segmentar
 
 %Parâmetros do segmentador
 Smooth_window = 30*taxaAquisicao; %this is the window length used for smoothing your signal 
@@ -78,13 +87,12 @@ f3 = sinais_mv(3,:);
 TPTR = 'modwtsqtwolog'; % threshold selection rule"
 SORH = 's'; % is for soft or hard thresholding
 SCAL = 'mln'; % defines multiplicative threshold rescaling
-N = 14; % Wavelet decomposition is performed at N level
-wname = 'dmey'; % is a character vector containing the name of the desired orthogonal wavelet
+N = 10; % Wavelet decomposition is performed at N level
+wname = 'db4'; % is a character vector containing the name of the desired orthogonal wavelet
 
 sinais_mv_dwt(1,:) = wden(f1,TPTR,SORH,SCAL,N,wname);
 sinais_mv_dwt(2,:) = wden(f2,TPTR,SORH,SCAL,N,wname);
 sinais_mv_dwt(3,:) = wden(f3,TPTR,SORH,SCAL,N,wname);
-
 
 
 if mixed_plot
@@ -124,16 +132,6 @@ end
 
 %% Segmentação manual
 
-coleta = 16;
-
-% Vetores de inicio e fim das contrações
-inicio_c = [2211 12190 17970 22030 25900 29440];
-fim_c =    [5067 13580 20620 23560 28080 30990];
-
-canal_analizado = 1;              %Seleciona o canal que se quer segmentar
-
-sem_parto = 38;
-
 %%%% Cálculo das características 
 
 l_plot = size(fim_c,2);   % Gera a disposição dos subplots automaticamente
@@ -165,6 +163,20 @@ for i = 1:size(fim_c,2)
     rms_seg(i) = mean(temp_rms);
     var_seg(i) = mean(temp_var);
     
+    %Extraindo PEAK FREQUENCY
+    N = length(segmento{i});
+    xdft = fft(segmento{i});
+    xdft = xdft(1:N/2+1);
+    psdx = (1/(taxaAquisicao*N)) * abs(xdft).^2;
+    psdx(2:end-1) = 2*psdx(2:end-1);
+    freq = 0:taxaAquisicao/length(segmento{i}):taxaAquisicao/2;
+    [maximo,index] = max(psdx);
+    peak_frequency(i) = freq(index);
+    
+    %Extraindo Sample Entropy
+    samp_en(i) = SampEn(segmento{i},2,0.2);
+    
+    
     % Limpa variáveis temporárias
     clear temp_rms
     clear temp_var
@@ -179,6 +191,16 @@ rms_med = mean(rms_seg);
 var_min = min(var_seg);
 var_max = max(var_seg);
 var_med = mean(var_seg);
+
+% Pega valor máximo, mínimo e médio da frequencia de pico
+peak_frequency_min = min(peak_frequency);
+peak_frequency_max = max(peak_frequency);
+peak_frequency_med = mean(peak_frequency);
+
+%pega a sample entropy
+samp_en_min = min(samp_en);
+samp_en_max = max(samp_en);
+samp_en_med = mean(samp_en);
 
 % pega duração média das contrações em segundos
 for i = 1:size(fim_c,2)
@@ -199,14 +221,14 @@ for i = 1:size(fim_c,2)-1
 end 
 intervalo_med = (sum(inter)/(size(fim_c,2)-1))*periodo_amostra;
 
-caracteristicas(coleta,:) = [str2num(file) sem_parto rms_min rms_max rms_med var_min var_max var_med duracao_med freq_med intervalo_med];
+caracteristicas(coleta,:) = [str2num(file) sem_parto rms_min rms_max rms_med var_min var_max var_med peak_frequency_min peak_frequency_max peak_frequency_med samp_en_min samp_en_max samp_en_med duracao_med freq_med intervalo_med];
 
 posicao_excel = strcat('A',num2str(coleta+1));
 
 % Escrevendo características no excel
-cabecalho_excel = {'Arquivo','SemanaParto','RMS_min','RMS_max','RMS_med','VAR_min','VAR_max','VAR_med','Dur_med','Freq_med','Inter_med'};
-xlswrite('FeaturesContracoes.xlsx',cabecalho_excel,'Features','A1');
-xlswrite('FeaturesContracoes.xlsx',caracteristicas(coleta,:),'Features',posicao_excel);
+cabecalho_excel = {'Arquivo','SemanaParto','RMS_min','RMS_max','RMS_med','VAR_min','VAR_max','VAR_med','PF_min','PF_max','PF_med','SE_min','SE_max','SE_med','Dur_med','Freq_med','Inter_med'};
+xlswrite('FeaturesContracoesWaveletTerm.xlsx',cabecalho_excel,'Features','A1');
+xlswrite('FeaturesContracoesWaveletTerm.xlsx',caracteristicas(coleta,:),'Features',posicao_excel);
 
 %clearvars -except caracteristicas duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
 
