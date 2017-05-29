@@ -306,7 +306,9 @@ Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros ut
 		
 		\item frequência média entre contrações;
 		
-		\item intervalo médio entre contrações.
+		\item intervalo médio entre contrações;
+		
+		\item entropia amostral (máxima, mínima e média).
 		
 		
 		
@@ -316,14 +318,12 @@ Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros ut
 
 %------------------------------------------------
 
-
-
-
-
-
-
-
-
+\begin{frame}
+	\frametitle{Metodologia: Fuzzy}	
+	
+	Das características extraídas, foram selecionadas aquelas adequadas para aplicar uma regra em um sistema Fuzzy que possa diferenciar contrações de gestações prematuras e não prematuras	
+	
+\end{frame}
 
 
 
@@ -333,9 +333,60 @@ Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros ut
 	\frametitle{Resultados: pré-processamento}	
 	
 	\begin{figure}[H]
-		\caption{\label{sinais} Resultado do pré-processamento.}
+		\caption{\label{sinais} Resultado da filtragem e redução de ruído para um determinado sinal.}
 		\begin{center}
 			\includegraphics[scale=0.33]{imagens/sinais.png} 		
+		\end{center}
+		%\legend{\cite{ref-islddatabase}}
+	\end{figure}
+	
+	Fonte: [Autores]
+	
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Resultados: pré-processamento}	
+	
+	\begin{figure}[H]
+		\caption{\label{contracao} Resultado da segmentação para um determinado sinal.}
+		\begin{center}
+			\includegraphics[scale=0.35]{imagens/contra.jpg} 		
+		\end{center}
+		%\legend{\cite{ref-islddatabase}}
+	\end{figure}
+	
+	Fonte: [Autores]
+	
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Resultados: extração de características}	
+	
+	\begin{figure}[H]
+		\caption{\label{caract} Análise estatística dos sinais quanto a duração média das contrações.}
+		\begin{center}
+			\includegraphics[scale=0.45]{imagens/caract.png} 		
+		\end{center}
+		%\legend{\cite{ref-islddatabase}}
+	\end{figure}
+	
+	Fonte: [Autores]
+	
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Resultados: fuzzy}	
+	
+	\begin{figure}[H]
+		\caption{\label{regrasfuz} Aplicação das regras Fuzzy.}
+		\begin{center}
+			\includegraphics[scale=0.35]{imagens/regrasfuz.png} 		
 		\end{center}
 		%\legend{\cite{ref-islddatabase}}
 	\end{figure}
@@ -395,23 +446,23 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ul
 \end{frame}
 
 %------------------------------------------------
-\section{Second Section}
+\section{aand Section}
 %------------------------------------------------
 
 \begin{frame}
-\frametitle{Table}
-\begin{table}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
+	\frametitle{Table}
+	\begin{table}
+		\begin{tabular}{l l l}
+			\toprule
+			\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
+			\midrule
+			Treatment 1 & 0.0003262 & 0.562 \\
+			Treatment 2 & 0.0015681 & 0.910 \\
+			Treatment 3 & 0.0009271 & 0.296 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Table caption}
+	\end{table}
 \end{frame}
 
 %------------------------------------------------
