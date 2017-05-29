@@ -7,7 +7,7 @@ close all;
 
 path = 'C:\tpehgdb\';
 prefix = 'tpehg';
-file = '1022';
+file = '618';
 extension = '.dat';
 
 fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat
@@ -66,6 +66,8 @@ sinais_mv = sinais_filt.*5./(2^16); %gera os sinais em milivolts
 
 mixed_plot = 0; % escolhe se o sinal será plotado separado de sua DWT (0) ou junto (1)
 
+%{
+
 
 %% "DENOISE" USANDO TRANSFORMADA DE WAVELET DISCRETA
 
@@ -85,8 +87,6 @@ sinais_mv_dwt(1,:) = wden(f1,TPTR,SORH,SCAL,N,wname);
 sinais_mv_dwt(2,:) = wden(f2,TPTR,SORH,SCAL,N,wname);
 sinais_mv_dwt(3,:) = wden(f3,TPTR,SORH,SCAL,N,wname);
 
-
-
 if mixed_plot
     subplot(3,1,1);   % plota os 3 canais sem e com dwt
     plot(t,sinais_mv(1,:),t,sinais_mv_dwt(1,:),'r');
@@ -99,24 +99,24 @@ if mixed_plot
     title('Canal 3')
 else
     subplot(3,1,1);   % plota os 3 canais
-    plot(t,sinais_mv(1,:),'r');
+    plot(t,sinais_mv_dwt(1,:),'r');
     title('Canal 1')
     subplot(3,1,2);
-    plot(t,sinais_mv(2,:),'r');
+    plot(t,sinais_mv_dwt(2,:),'r');
     title('Canal 2')
     subplot(3,1,3);
-    plot(t,sinais_mv(3,:),'r'); 
+    plot(t,sinais_mv_dwt(3,:),'r'); 
     title('Canal 3')
 
     figure;
     subplot(3,1,1);   % plota os 3 com dwt
-    plot(t,sinais_mv_dwt(1,:));
+    plot(t,sinais_mv(1,:));
     title('Canal 1 dwt')
     subplot(3,1,2);
-    plot(t,sinais_mv_dwt(2,:));
+    plot(t,sinais_mv(2,:));
     title('Canal 2 dwt')
     subplot(3,1,3);
-    plot(t,sinais_mv_dwt(3,:)); 
+    plot(t,sinais_mv(3,:)); 
     title('Canal 3 dwt')
 end
 
@@ -133,6 +133,7 @@ fim_c =    [5067 13580 20620 23560 28080 30990];
 canal_analizado = 1;              %Seleciona o canal que se quer segmentar
 
 sem_parto = 38;
+
 
 %%%% Cálculo das características 
 
@@ -210,3 +211,4 @@ xlswrite('FeaturesContracoes.xlsx',caracteristicas(coleta,:),'Features',posicao_
 
 %clearvars -except caracteristicas duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
 
+%}
