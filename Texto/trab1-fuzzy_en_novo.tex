@@ -244,16 +244,40 @@ A $2x2$ reusable monopolar eletrode grid (Ag/AgCl) was disposed on the pacients 
  
  The selection of digital filters to remove noise from signals
  before the processing may greatly influence the results.
- A band-pass filter is needed. It was recognized that the uterine
- EMG content ranges from 0 to $<$ 5 Hz \cite{ref-devedeux}. So the pre-filtered signals from 0.08 to $<$ 5 Hz was chosen.
+ A band-pass filter is needed.  Uterine EMG signals are filtered in order to exclude
+ most components of motion, respiration and cardiac signals, which yields a narrow ‘uterinespecific’ band of 0.34–1.00 Hz \cite{ref-lucovnik}.
+ 
+ Wavelets have been growing in popularity as an alternative to the usual Fourier transform method.
+ The wavelet transform can essentially be divided into discrete and continuous forms. It efficiently transforms the signals with a flexible resolution in both time- and frequency-domains. The DWT method has been successful in analyzing non-stationary signals,
+ such as surface EMG (sEMG) signals, but it yields a high-dimensional feature vector \cite{ref-chu}.
+ 
+ Successive low-pass and high pass filtering in the discrete-time domain computes the DWT. The
+ general equation of DWT (Equation (\ref{eq1})), is given below:
+ 
+ 
+ \begin{equation}
+ 	\begin{array}{ccc}
+ 		
+ 		x(t) = \sum_{k=-\infty}^{\infty }\sum_{l=-\infty}^{\infty }d(k,l)2^{\frac{k}{2}}\psi(2^{-k}t-1)
+ 		
+ 		
+ 	\end{array}
+ 	\label{eq1}
+ \end{equation}
+ 
+ where ($\psi$) is the ‘mother wavelet’ which can be taken as a band-pass function.
+ 
+ Removing the  interference of random noises from EMG signals (for example, white Gaussian noise (WGN)) using
+ filtering procedures is difficult. Wavelet de-noising algorithms can effectively remove these noises \cite{ref-Phinyomark}. Selecting the right wavelet function is the most crucial part of
+ wavelet de-noising, which in turn depends on a number of factors, such as the type of application and
+ characteristics of the signal. By investigating and analyzing various research studies on wavelet transform, the author of \cite{ref-Chowdhury} has concluded that analyzing sEMG signals using Daubechies’s function renders successful results. For obtaining better results from a sEMG analysis on different applications, the author of \cite{ref-Chowdhury} recommends to use the db function (db2, db4, db6, db44 and db45) at decomposition level 4. So db4 at level 4 was chosen in this work.
+ 
+ \subsection{EMG Features}
  
  
  
  
- 
- 
- 
- 
+ \subsection{Segmentation}
  
  
  
@@ -417,20 +441,37 @@ Kavšek, G.  Electromyographic activity of the uterus in threatened preterm deli
 Fele-Zorz G., Kavšek, G, Novak-Antolic Z., Jager F.  A comparison of various linear and non-linear signal processing techniques to separate uterine EMG records of term and pre-term delivery groups. {\em Med Biol Eng Comput} {\bf 2008}, {\em 46}, 911–922.	
 
 %% Reference 10
-\bibitem[  Novák, V., Perfilieva, I., Močkoř, J. (1999)]{ref-novak}
-Novák, V., Perfilieva, I., Močkoř, J. {\em Mathematical Principles of Fuzzy Logic}; 1st ed; Kluwer Academic Publishers: Boston,
+\bibitem[  Novák V., Perfilieva I., Močkoř J. (1999)]{ref-novak}
+Novák V., Perfilieva I., Močkoř J. {\em Mathematical Principles of Fuzzy Logic}; 1st ed; Kluwer Academic Publishers: Boston,
 USA, 1999; ISBN 0-7923-8595-0
 
 %% Reference 11
-\bibitem[Devedeux D., Marque C., Mansour S., Germain G., Duchene J. (1993)]{ref-devedeux}
-Devedeux D., Marque C., Mansour S., Germain G., Duchene J. Uterine electromyography: a critical review. {\em Am J Obstet Gynecol} {\bf 1993}, {\em 169(6)}, 1636–1653.	
+%\bibitem[Devedeux D., Marque C., Mansour S., Germain G., Duchene J. (1993)]{ref-devedeux}
+%Devedeux D., Marque C., Mansour S., Germain G., Duchene J. Uterine electromyography: a critical review. %{\em Am J Obstet Gynecol} {\bf 1993}, {\em 169(6)}, 1636–1653.	
+
+%% Reference 11
+\bibitem[Lucovnik M., Kuon R. J., Chambliss L. R., {\em et al} (2011)]{ref-lucovnik}
+Lucovnik M., Kuon R. J., Chambliss L. R., {\em et al} Use of uterine electromyography to diagnose term and preterm labor. {\em Acta Obstet Gynecol Scand} {\bf 2011}, {\em 90(2)}, 150–157.	
+
+%% Reference 12
+\bibitem[Chu J.U., Moon I., Lee Y.J., Kim S.K., Mun M.S. (2007)]{ref-chu}
+Chu J.U., Moon I., Lee Y.J., Kim S.K., Mun M.S. A supervised feature-projection-based
+real-time EMG pattern recognition for multifunction myoelectric hand control. {\em IEEE/ASME Trans. Mechatron} {\bf 2007}, {\em 12}, 282–290.
 
 
+%% Reference 13
+\bibitem[Phinyomark A., Limsakul C., Phukpattaranont P. A (2009)]{ref-Phinyomark}
+Phinyomark A., Limsakul C., Phukpattaranont P. A. A Comparative Study of Wavelet Denoising
+for Multifunction Myoelectric Control. In Proceedings of the International Conference on
+Computer and Automation Engineering (ICCAE ’09), Bangkok, Thailand, 8–10 March {\bf 2009};
+pp. 21–25.
 
+%% Reference 14
+\bibitem[Chowdhury R.H., Reaz M.B.I., Ali M.A.B.M.A. {\em et al} (2013)]{ref-Chowdhury}
+Chowdhury R.H., Reaz M.B.I., Ali M.A.B.M.A. {\em et al}. Surface Electromyography Signal Processing and
+Classification Techniques. {\em sensors} {\bf 2013}, {\em 13}, 12431-12466.
 
-
-	
- 
+                                                             
 
 
 

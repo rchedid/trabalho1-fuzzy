@@ -1,6 +1,6 @@
 Segundo um comentário de um nerdão tetudo no forum da mathworks:
 
-https://www.mathworks.com/matlabcentral/fileexchange/50289-a-set-of-entropy-measures-for-temporal-series--1d-signals-
+http://www.mathworks.com/matlabcentral/fileexchange/50289-a-set-of-entropy-measures-for-temporal-series--1d-signals-?focused=3867421&tab=function
 
 tem que fazer isso:
 

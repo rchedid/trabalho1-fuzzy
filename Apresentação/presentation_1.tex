@@ -97,7 +97,7 @@
 
 \title[DELET-UFRGS]{Abordagem Fuzzy para identifica\c{c}\~ao de Partos Prematuros e N\~ao-Prematuros} % The short title appears at the bottom of every slide, the full title is only on the title page
 
-\author{Bruno Tondin, Raissan Chedid e Alexandre Balbinot} % Your name
+\author{Tondin B., Chedid R. e Balbinot A.} % Your name
 \institute[UFRGS] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 Universidade Federal do Rio Grande do Sul \\ % Your institution for the title page
@@ -160,7 +160,7 @@ Universidade Federal do Rio Grande do Sul \\ % Your institution for the title pa
 Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros utilizando lógica {\em fuzzy} em sinais de eletromiografia uterina [eletrohisterograma (EHG)] do abdômen de mulheres em gestação.
 
 \begin{itemize}
-	\item Não foi publicado, até o presente momento, trabalhos utilizando lógica {\em fuzzy} em sinais de EHG;
+	\item Os autores não encontraram, até o presente momento, outros trabalhos utilizando lógica {\em fuzzy} em sinais de EHG;
 	\item permitir a comparação futura com outros métodos de classificação.
 \end{itemize}
 
@@ -173,12 +173,12 @@ Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros ut
 	
 	\begin{itemize}
 		\item Gravidez é um processo fisiológico que envolve mudanças anatômicas, psicológicas e emocionais, resultado de um incremento hormonal que permite cumprir as demandas metabólicas do feto e da mãe \cite{p1};
-		\item apesar de ser um processo natural, a gravidez pode acarretar diversos problemas de saúde que, nas formas mais graves, constituem em uma proporção significante da mortandade de mulheres jovens;
-		\item uma das maiores causas desta mortandade é o parto prematuro.
+		\item apesar de ser um processo natural, a gravidez pode acarretar diversos problemas de saúde que, nas formas mais graves, constituem em uma proporção significante da mortandade de mulheres jovens \cite{p2};
+		\item uma das maiores causas desta mortandade é o parto prematuro \cite{p2}.
 	\end{itemize}
 	
 \end{frame}
-
+ 
 %------------------------------------------------
 
 \begin{frame}
@@ -188,9 +188,9 @@ Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros ut
 	
 	\begin{itemize}
 		
-		\item interpretação varia de paciente para paciente e de operador para operador;
+		\item interpretação varia de paciente para paciente e de operador para operador  \cite{ref-bernardes};
 		
-		\item eventualmente, há mudança (para cima ou para baixo) na linha de base do sinal, o que dificulta a interpretação. Isso é conhecido como {\em baseline errante}.
+		\item eventualmente, há mudança (para cima ou para baixo) na linha de base do sinal, o que dificulta a interpretação. Isso é conhecido como {\em baseline errante} \cite{ref-marques}.
 		
 	\end{itemize}
 	
@@ -199,6 +199,152 @@ Avaliar a possibilidade de detecção de partos prematuros ou não-prematuros ut
 %------------------------------------------------
 
 
+\begin{frame}
+	\frametitle{Introdu\c{c}\~ao: tocodinamometria}	
+
+ \begin{figure}[H]
+ 	\caption{\label{toco} Contrações uterinas medidas com tocodinamometria.}
+ 	\begin{center}
+ 		\includegraphics[scale=0.40]{imagens/toco.jpg} 		
+ 	\end{center}
+ 	%\legend{\cite{ref-islddatabase}}
+ \end{figure}
+ 
+ Fonte: \cite{ref-islddatabase}
+ 
+ 
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Introdu\c{c}\~ao: eletromiografia uterina}	
+	
+	Também chamada de EHG (eletrohisterografia), avalia a atividade elétrica uterina no domínio do tempo, através de eletrodos de superfície fixados no abdômen da gestante. Esses sinais elétricos são os comandos para que o útero se contraia. 
+	
+	\begin{itemize}
+		
+		\item O nível de atividade aumenta conforme se aproxima o dia do parto e, nos últimos 3 ou 4 dias há um salto considerável na mesma \cite{ref-lucovnik};
+		
+		\item antes de permitir uma análise apropriada, o sinal obtido, na sua forma bruta, necessita de um pré processamento. Podem ser utilizados, filtros, removedores de ruído e detecção automática de contrações.
+		
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+	\frametitle{Introdu\c{c}\~ao: tocodinamometria}	
+	
+	\begin{figure}[H]
+		\caption{\label{barrigao} Posicionamento do tocodonamômetro e dos eletrodos e EHG.}
+		\begin{center}
+			\includegraphics[scale=0.35]{imagens/barrigao.png} 		
+		\end{center}
+		%\legend{\cite{ref-islddatabase}}
+	\end{figure}
+	
+	Fonte: \cite{ref-islddatabase}
+	
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{A base de dados}	
+	
+	\begin{itemize}
+	
+		\item As aquisições utilizadas neste trabalhos foram feitas na Eslovênia entre 1997 e 2005 utilizando um equipamento 4 eletrodos de superfície de forma bipolar, resultando em 3 canais;
+		
+		\item São 300 medições feitas durante {\em check-ups} regulares, onde 38 são de nascimentos prematuros e 262 de nascimentos não-prematuros;
+		
+		\item a frequência de amostragem foi de 20Hz com uma resolução de 16bits \cite{Kavšek}.
+	
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Metodologia: pré-processamento}	
+	
+	O pré-processamento do sinal foi feito da seguinte forma: 
+	
+	\begin{itemize}
+		
+		\item conforme \cite{ref-lucovnik}, a faixa de frequência onde se concentra a maior parte do sinal relevante, e se rejeita a maior parte dos artefatos indesejados é de 0.34 a 1Hz. Portando o sinal foi filtrado utilizando um filtro passa faixa Butterworth de oitava ordem nesta faixa de frequência;
+		
+		\item o ruído foi removido utilizando a transformada de Wavelet, onde a função escolhida para a mesma foi a Daubechies4 com nível 10 e limiar suave universal;
+		
+		\item a segmentação do sinal foi feita a mão pois permitiu fazer uma separação dos artefatos de movimento oriundos da atividade do feto.
+		
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}
+	\frametitle{Metodologia: extração de características}	
+	
+	Características avaliadas para as contrações: 
+	
+	\begin{itemize}
+		
+		\item RMS (máximo, mínimo e médio);
+		
+		\item variância (máxima, mínima e média);
+		
+		\item frequência de pico (máxima, mínima e média);
+		
+		\item duração média;
+		
+		\item frequência média entre contrações;
+		
+		\item intervalo médio entre contrações.
+		
+		
+		
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{Resultados: pré-processamento}	
+	
+	\begin{figure}[H]
+		\caption{\label{sinais} Resultado do pré-processamento.}
+		\begin{center}
+			\includegraphics[scale=0.33]{imagens/sinais.png} 		
+		\end{center}
+		%\legend{\cite{ref-islddatabase}}
+	\end{figure}
+	
+	Fonte: [Autores]
+	
+\end{frame}
+
+%------------------------------------------------
 
 \begin{frame}
 \frametitle{Bullet Points}
@@ -317,11 +463,47 @@ This statement requires citation \cite{p1}.
 \frametitle{References}
 \footnotesize{
 \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Smith, 2012]{p1} John Smith (2012)
-\newblock Title of the publication
-\newblock \emph{Journal Name} 12(3), 45 -- 678.
+\bibitem[Weissgerber, 2006]{p1} T.L. Weissgerber, L.A. Wolfe (2006)
+\newblock Physiological adaptation in early human pregnancy: adaptation to balance maternal-fetal demands.
+\newblock \emph{Appl. Physiol. Nutr. Metab} 31, 1 -- 11.
+
+\bibitem[Alkema L., 2016]{p2} Alkema L. {\em et al} (2016)
+\newblock Global, regional, and national levels and trends in maternal mortality between 1990 and 2015, with scenario-based projections to 2030: a systematic analysis by the UN Maternal Mortality Estimation Inter-Agency Group.
+\newblock \emph{Lancet} 387, 462 -- 74.
+
+\bibitem[Bernardes J., 1997]{ref-bernardes} J. Bernardes, A. Costa-Pereira, D. Ayres-de-Campos, H. Van Geijn, and L. Pereira-Leite. (1997)
+\newblock Evaluation of interobserver agreement of Cardiotocograms
+\newblock \emph{International Journal of Gynaecology \& Obstetrics.} 57, 33 -- 37.
+
+\bibitem[Marques J.A., 2013]{ref-marques} J. A. Marques, P. C. Cortez, J. P. Madeiro, and F. S. Schlindwein (2013)
+\newblock Computerized Cardiotocography analysis system based on Hilbert Transform
+\newblock \emph{Expert System with Applications.} 40, 7159 -- 7658.
 \end{thebibliography}
 }
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{References}
+	\footnotesize{
+		\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+						
+			\bibitem[Lucovnik M., 2011]{ref-lucovnik} Lucovnik M., Maner W.L., Chambliss L.R. {\em et al} (2011)
+			\newblock Noninvasive uterine electromyography for prediction of preterm delivery.
+			\newblock \emph{American journal of obstetrics and gynecology} 204(3),  228.e1 -- 10.
+			
+			\bibitem[Alexandersson A. 2015]{ref-islddatabase} Alexandersson A., Steingrimsdottir T., Terrien j. {\em et al} (2015)
+			\newblock The Icelandic 16-electrode electrohysterogram database.
+			\newblock \emph{Sci. Data}.
+			
+			\bibitem[Kavšek, G. 2001]{Kavšek} Kavšek, G. (2001)
+			\newblock Electromyographic activity of the uterus in threatened preterm delivery.
+			\newblock \emph{MsC thesis}.
+			
+			
+		\end{thebibliography}
+	}
 \end{frame}
 
 %------------------------------------------------

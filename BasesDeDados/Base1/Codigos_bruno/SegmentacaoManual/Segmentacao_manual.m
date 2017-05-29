@@ -231,4 +231,3 @@ xlswrite('FeaturesContracoesWaveletTerm.xlsx',cabecalho_excel,'Features','A1');
 xlswrite('FeaturesContracoesWaveletTerm.xlsx',caracteristicas(coleta,:),'Features',posicao_excel);
 
 %clearvars -except caracteristicas duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
-
