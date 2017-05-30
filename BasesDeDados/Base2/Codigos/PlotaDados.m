@@ -8,7 +8,7 @@ close all;
 
 %OBS: Ao trocar de arquivo deve-se alterar o axis dos plots RAW
 
-load('../Dados/ice028_p_2of3m.mat');
+load('C:\BASES_DE_DADOS\icelandic16ehgmat\ice002_p_1of3m.mat');
 
 % PARAMETROS
 taxaAquisicao = 200;
@@ -42,8 +42,9 @@ axis([0 4000 -10 11]);
 lgd = legend('show');
 lgd.FontSize = 16;
 
-sinalRAW = RetiraDC(sinalRAW);
-sinalFiltrado = FiltroPA(sinalRAW, 0.1, 200, 2);
+%sinalRAW = RetiraDC(sinalRAW);
+sinalFiltrado = FiltroPA(sinalRAW, 0.35, 200, 6);
+sinalFiltrado = FiltroPB(sinalFiltrado, 1, 200, 6);
 %sinalFiltrado = FiltroPA(sinalFiltrado, 0.1, 200, 2);
 
 %FFT
