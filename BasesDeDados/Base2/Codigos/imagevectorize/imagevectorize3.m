@@ -4,9 +4,9 @@ clc
 clearvars;
 close all;
 
-h80 = 63; %% altura do 80mmhg em pixels
+h80 = 61; %% altura do 80mmhg em pixels
 
-filename = 'ice016_l_1of1';
+filename = 'ice020_l_1of1';
 path = 'imagens\';
 ext = '.jpg';
 toco = '_toco';
@@ -18,9 +18,6 @@ arquivo = strcat(path,filename,ext);
 I_orig = imread(arquivo); % Lê a imagem e armazena em uma matriz de uint
 
 I_orig_r = I_orig(:,:,1);
-
-[red,maskedRGBImage] = createMask3(I_orig);
-
 
 [BW,I] = createMask2(I_orig);
 
