@@ -4,23 +4,22 @@ clc
 clearvars;
 close all;
 
-h80 = 63; %% altura do 80mmhg em pixels
 
-filename = 'ice016_l_1of1';
-path = 'imagens\';
-ext = '.jpg';
-toco = '_toco';
+filename = 'teste';
 
-salva = strcat(filename,toco);
-
-arquivo = strcat(path,filename,ext);
-
-I_orig = imread(arquivo); % Lê a imagem e armazena em uma matriz de uint
+I_orig = imread('imagens\ice001_l_1of1.jpg'); % Lê a imagem e armazena em uma matriz de uint
 
 I_orig_r = I_orig(:,:,1);
 
-[red,maskedRGBImage] = createMask3(I_orig);
+[red,maskedRGBImage] = createMask3(I_orig)
 
+
+I_invert = ~I_orig;
+
+red_image = I_orig(:,:,1);
+
+figure
+imshow(C);
 
 [BW,I] = createMask2(I_orig);
 
@@ -108,15 +107,11 @@ xx = 1:1:eixo_x_func;
 yy = spline(x,y,xx);
 
 escreve = yy;
-
-escala_de_pressao = eixo_y - h80;  %ajusta a escala de pressão
-escala_de_pressao = escala_de_pressao/80;
-escreve = escreve/escala_de_pressao;
  
 
-dlmwrite(strcat('C:\Users\bruno\Desktop\Trabalho1-Fuzzy\BasesDeDados\Base2\Codigos\imagevectorize\data\',salva,'.dat'),escreve, ' ')
+dlmwrite(strcat('C:\Users\bruno\Desktop\Trabalho1-Fuzzy\BasesDeDados\Base2\Codigos\imagevectorize\data\',filename,'.dat'),escreve, ' ')
 
-aa = load(strcat('C:\Users\bruno\Desktop\Trabalho1-Fuzzy\BasesDeDados\Base2\Codigos\imagevectorize\data\',salva,'.dat'));
+aa = load(strcat('C:\Users\bruno\Desktop\Trabalho1-Fuzzy\BasesDeDados\Base2\Codigos\imagevectorize\data\',filename,'.dat'));
 
 
 BWI = imref2d(size(I_orig));
@@ -131,8 +126,7 @@ subplot(2,1,1), imshow(I_orig,BWI);
 subplot(2,1,2);
 plot(aa);
 xlim([-(eixo_x - eixo_x_func) eixo_x_func])
-ylim([(min(yy) - 50)/escala_de_pressao (max(yy) + 50)/escala_de_pressao])
-grid
+ylim([min(yy) - 50 max(yy) + 50])
 
 %{
 figure
