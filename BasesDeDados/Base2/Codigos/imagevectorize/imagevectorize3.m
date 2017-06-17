@@ -4,10 +4,10 @@ clc
 clearvars;
 close all;
 
-h80 = 63; %% altura do 80mmhg em pixels
+h80 = 70; %% altura do 80mmhg em pixels
 
-filename = 'ice030_l_4of4';
-path = 'imagens\';
+filename = 'ice009_p_1of2';
+path = 'imagens\nao_trabalho\';
 ext = '.jpg';
 toco = '_toco';
 
@@ -19,12 +19,12 @@ I_orig = imread(arquivo); % Lê a imagem e armazena em uma matriz de uint
 
 I_orig_r = I_orig(:,:,1);
 
-[BW,I] = createMask3(I_orig);
+[BW,I] = createMask2(I_orig);
 
 figure
 imshow(BW);
 
-BW = BW;
+BW = ~BW;
 
 %subplot(2,2,4);   % plota imagem com filtro gaussiano
 figure
