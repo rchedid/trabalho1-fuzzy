@@ -58,7 +58,7 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{A Fuzzy Approach for Term and Preterm Identification}
+\Title{A Fuzzy Approach to Term and Preterm Identification Through EHG Signals}
 
 % If this is an expanded version of a conference paper, please cite it here: enter the full citation of your conference paper, and add $^\dagger$ in the end of the title of this article.
 %\conference{Title}
@@ -87,215 +87,118 @@ $^{1}$ \quad IEE-DELET; e-mail@e-mail.com}
 
 \begin{document}
 
-
 \section{Introduction}
 
-Pregnancy is a physiological process that involves
-anatomic-functional, emotional and psychological changes as
-result of an increment of hormone that enables compliance
-with the metabolic demands of the fetus and the mother \cite{ref-weisswolfe}.
+Pregnancy is a physiological process that involves anatomic-functional, emotional and psychological changes as result of an increment of hormone that enables compliance with the metabolic demands of the fetus and the mother \cite{ref-weisswolfe}.
 
-Despite being a natural process in women, pregnancy could
-generate some health complications, constituting a significant
-proportion of the global burden of maternal mortality and
-morbidity. That is why to monitor both an adequate
-adaptation of the women to all the physiological changes as
-well as the correct development of the fetus are important.
-According to the World Health Organization (WHO)
-complications during pregnancy are a leading cause of death
-among women of reproductive age. In 2015, the maternal mortality (women death during pregnancy and childbirth, or after them) was 216 per 100.000 live births, representing 303.000 deceases. Virtually
-all of these deaths occurred in low-income countries but most
-of them could have been avoided \cite{ref-alkema}. One of the major
-complications during pregnancy is preterm labor (less than 37
-weeks of gestation). Preterm labor and subsequent preterm
-birth is the primary cause of neonatal mortality and
-neurological morbidity in the short and long term. Its
-frequency varies between 5\% and 12\% in developed regions
-of the world, but can be up to 40\% in the poorest regions \cite{ref-villa}. 
+Despite being a natural process in women, pregnancy could generate some health complications, constituting a significant proportion of the global burden of maternal mortality and morbidity. That is why to monitor both an adequate adaptation of the women to all the physiological changes as well as the correct development of the fetus are important.
+
+According to the World Health Organization (WHO) complications during pregnancy are a leading cause of death among women of reproductive age. In 2015, the maternal mortality (women death during pregnancy and childbirth, or after them) was 216 per 100.000 live births, representing 303.000 deceases. Virtually all of these deaths occurred in low-income countries but most of them could have been avoided \cite{ref-alkema}. One of the major complications during pregnancy is preterm labor (less than 37 weeks of gestation). Preterm labor and subsequent preterm birth is the primary cause of neonatal mortality and neurological morbidity in the short and long term. Its frequency varies between 5\% and 12\% in developed regions of the world, but can be up to 40\% in the poorest regions \cite{ref-villa}. 
 
 
-Currently, Tocograph as a part of Cardiotocography (CTG) is
-used to monitor the strength, duration and frequency of uterine
-contractions. It is a pressure sensor which picks up the
-contraction of the uterus and displays it on a graph with the X-axis as time (seconds) and the Y-axis as pressure (mmHg).
-The sensor is placed at the fundus of the abdomen and is kept
-in place with the help of a belt. A sample Tocography is
-shown in Figure \ref{toco}.
+\subsection{Uterine Contractions}
 
- \begin{figure}[H]
- 	\caption{\label{toco} Uterine contractions in Tocography signal.}
- 	\begin{center}
- 		\includegraphics[scale=0.45]{imagens/toco.jpg} 		
- 	\end{center}
- 	%\legend{\cite{ref-islddatabase}}
- \end{figure}
- 
- There are several disadvantages of Tocography. Important
- among them are:
- 
- \begin{itemize}[leftmargin=*,labelsep=5.8mm]
- 	\item	Inter and intra-personal variation in interpretation of CTG
- 	trace \cite{ref-bernardes}.
- 	\item	Sometimes there is shift (either up or down) in baseline of
- 	signal which makes interpretation difficult. This is known as
- 	baseline wandering \cite{ref-marques}. 	
- \end{itemize}
- 
- The purpose of this work is to evaluate the possibility of early detection of preterm delivery (PD), by means
- of characterization of the contractions, obtained by uterine
- electromyogram (EMG), on the abdomen of the pregnant
- woman [electrohysterogram (EHG)], using fuzzy logic. As there is no current
- published information concerning fuzzy classification of EHG recordings, we propose to investigate, in this study, the potentialities of this method to determine a possible separation between contractions leading to a PD and contractions leading to
- delivery at term (DT), using fuzzy classification and avoiding CTG disavantages.
+Write.
+
+
+\subsection{Tocography}
+Currently, Tocograph as a part of Cardiotocography (CTG) is used to monitor the strength, duration and frequency of uterine contractions. It is a pressure sensor which picks up the contraction of the uterus and displays it on a graph with the X-axis as time (seconds) and the Y-axis as pressure (mmHg). The sensor is placed at the fundus of the abdomen and is kept in place with the help of a belt. A sample Tocography is shown in Figure \ref{toco}.
+
+\begin{figure}[H]
+	\caption{\label{toco} Uterine contractions in Tocography signal.}
+	\begin{center}
+		\includegraphics[scale=0.45]{imagens/toco.jpg} 		
+	\end{center}
+	%\legend{\cite{ref-islddatabase}}
+\end{figure}
+
+There are several disadvantages of Tocography. Important
+among them are:
+
+\begin{itemize}[leftmargin=*,labelsep=5.8mm]
+	\item	Inter and intra-personal variation in interpretation of CTG trace \cite{ref-bernardes}.
+	
+	\item	Sometimes there is shift (either up or down) in baseline of signal which makes interpretation difficult. This is known as baseline wandering \cite{ref-marques}. 	
+	
+	\item Tocodinamometry is not a reliable technique because it is very imprecise. [Dietmar et al, 2009]
+	
+	\item Many different variables affect the measurement of contractions, such as instrument placement, amount of subcutaneous fat, movements of the pregnant woman and uterine wall pressure.
+\end{itemize}
+
+
+\subsection{Electrohisterography}
+
+Write.
 
 
 
-%Please use the command \citep{ref-journal} for the following MDPI journals, which use author-date citation: Arts, Econometrics, Economies, Genealogy, Humanities, IJFS, JRFM, Laws, Religions, Risks, Social Sciences.
-
+\subsection{Objectives}
+The purpose of this work is to evaluate the possibility of detect if the pregnant is in labour or not, by means of characterization of the contractions obtained by uterine surface electromyogram (sEMG) on the abdomen of the pregnant woman. The uterine sEMG is called electrohysterogram (EHG).  As there is no current published information concerning fuzzy classification of EHG recordings, we propose to investigate, in this study, the potentialities of fuzzy logic to determine a possible separation between labour and non-labour contractions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials}
 
-\subsection{The Icelandic 16-electrode	Electrohysterogram Database}
+\subsection{The Icelandic 16-electrode Electrohysterogram Database}
+
+To perform this work, a 16-channel EHG signal database called "The Icelandic 16-electrode Electrohysterogram Database", available from the Physionet repository, was used.
+
+The acquisitions of this database were executed between 2008 and 2010 in the Landspitali University Hospital, Akureyri Hospital and Akureyri Primary Health Care Centre in Iceland. Were performed 122 recordings on 45 pregnant woman, where 32 were measured repeatedly during the same pregnancy and participated in two to seven recordings. Sessions ocurred in the third trimester (112 recordings) and during labor (10 recordings). The database includes simultaneously recorded tocographs, annotations of events and obstetric information on participants. Informed consent was obtained from every participant and the protocol was approved by the National Bioethics Committee in Iceland (VSN 02-006-V4) \cite{ref-islddatabase}.
+
+A $4x4$ reusable monopolar Ag/AgCl electrodes with a 13.0mm outer diameter and an 8.0mm inner diameter were used for the recordings. An alignment frame, a double sided hypoallergenic adhesive sheet and a silicone backing were designed and manufactured to enable a standardized electrode setup with a 17.5mm distance between adjacent electrode centers. The electrode numbering scheme, as seen when looking at the abdomen of the participant, can be seen in Figure \ref{electrode_scheme}.
+
+\begin{figure}[H]
+	\caption{\label{electrode_scheme} The electrode numbering scheme, as seen when looking at the abdomen of the participant.}
+	\begin{center}
+		\includegraphics[scale=0.7]{imagens/electrode_scheme.png} 		
+	\end{center}
+	%\legend{\cite{ref-islddatabase}}
+\end{figure}
 
 
-The acquisitions of this database were executed between 2008 and 2010 in the Landspitali University Hospital, Akureyri Hospital and Akureyri Primary Health Care Centre in Iceland. Were performed 122 recordings on 45 pregnant woman, where 32 were measured repeatedly during
-the same pregnancy and participated in two to seven recordings. Sessions ocurred in the third
-trimester (112 recordings) and during labor (10 recordings). The database includes simultaneously recorded tocographs, annotations of events and obstetric information on participants. Informed consent was obtained from every participant and the protocol was approved by the National
-Bioethics Committee in Iceland (VSN 02-006-V4) \cite{ref-islddatabase}.
+A tocodynamometer was also attached to the abdomen during recordings. For pregnancy recordings, the participants were seated in recliner chairs and a support, such as a small pillow, was positioned under the right side of the participants to prevent potential aortocaval compression syndrome. For labor recordings, the participants were lying on their beds in the maternity wards and the researcher did not try to affect their positioning. A photo of the setup during a recording can be seen Figure \ref{recording_setup}.
 
 
-A $4x4$ reusable monopolar eletrode grid (Ag/AgCl) was disposed on the pacients abdomen as can be seen in Figure \ref{abd_elec} 
+\begin{figure}[H]
+	\caption{\label{recording_setup} Electrode grid diposed on pacient's abdomen.}
+	\begin{center}
+		\includegraphics[scale=0.6]{imagens/coletaBaseIrlanda.png} 		
+	\end{center}
+	%\legend{\cite{ref-islddatabase}}
+\end{figure}
 
-
- \begin{figure}[H]
- 	\caption{\label{abd_elec} Ideal position of the 16 electrode grid. The black dots represents the patient ground reference.}
- 	\begin{center}
- 		\includegraphics[scale=0.35]{imagens/abd_elec.png} 		
- 	\end{center}
- 	%\legend{\cite{ref-islddatabase}}
- \end{figure}
-
-The measurements were performed using a sixteen channel multi-purpose physiological signal
-recorder (Embla A10), most commonly used for investigating sleep disorders. An anti-aliasing filter with
-a high cut-off frequency of 100 Hz was used but no high pass filter was used. The signal sampling rate was 200 Hz and the signal was digitized to 16 bits.  \cite{ref-islddatabase}.
-
-\subsection{The Term-Preterm Electrohysterogram database}
-
-The EHG records included in the Term-Preterm Electrohysterogram database (TPEHG DB) were obtained from 1997 to 2005 at the University Medical Centre Ljubljana, Department of Obstetrics and Gynecology. The records were obtained during regular check-ups either around the 22nd week of gestation or around the 32nd week of gestation. In all, almost 1300 records were obtained during these years, and a preliminary database was built and used for studies by Ivan Verdenik, Gorazd Kavšek, Marjan Pajntar and Živa Novak-Antolič \cite{ref-verdenik},\cite{ref-kavsek}
-
-During the selection of records, all records with apparent recording artifacts, all records from pregnancies where labor was induced, and all records where delivery was performed using a Cesarean section, were rejected. The 300 resulted data are:
-
-\begin{itemize}[leftmargin=*,labelsep=5.8mm]
-	
-	\item	262 records were obtained during pregnancies where delivery was on term (duration of gestation at delivery $>$ 37 weeks):
-	
-	\begin{itemize}[leftmargin=*,labelsep=5.8mm]
-		\item 143 records were obtained before the 26th week of gestation and	
-		
-		\item 119 were obtained later during pregnancy, during or after the 26th week of gestation;	
-	\end{itemize}
-	
-	\item	38 records were obtained during pregnancies which ended prematurely (pregnancy duration $\leq$ 37 weeks), of which:
-	
-	\begin{itemize}[leftmargin=*,labelsep=5.8mm]
-		\item 19 records were obtained before the 26th week of gestation and
-			
-		\item	19 records were obtained during or after the 26th week of gestation.	
-	\end{itemize}
-	 	
-\end{itemize}
-
-The differences in the electrical potentials of the electrodes were recorded, producing 3 channels:
-
-\begin{itemize}[leftmargin=*,labelsep=5.8mm]
-	\item S1 = E2–E1 (first channel);
-	\item S2 = E2–E3 (second channel);
-	\item S3 = E4–E3 (third channel).
-\end{itemize}
-
-A $2x2$ reusable monopolar eletrode grid (Ag/AgCl) was disposed on the pacients abdomen as can be seen in Figure \ref{abd_elec4x4}. 
-
- \begin{figure}[H]
- 	\caption{\label{abd_elec4x4} Ideal position of the 4 electrode grid. }
- 	\begin{center}
- 		\includegraphics[scale=0.43]{imagens/abd_elec4x4.png} 		
- 	\end{center}
- 	%\legend{\cite{ref-islddatabase}}
- \end{figure}
- 
- The records are of 30-min
- duration and consist of three channels. The sampling frequency was 20Hz and the signal was digitized to 16 bits. Prior to
- sampling the signals were filtered using an analog threepole Butterworth filter with the bandwidth from 0 to 5 Hz \cite{ref-baseboa}
- 
- \subsection{The Fuzzy Logic}
- 
- Unlike in the boolean logic, in the fuzzy logic the variables can assume more than 2 values (true and false). That is, it can work in the concept where the truth can range between the completely true to completely false \cite{ref-novak}
- 
- 
- 
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \section{Methods}
-
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \subsection{Pre-Processing}
- 
- The TPEHG database was chosen for providing more consistent data, information on the type of contraction (preterm and term) and using differential signals. Moreover, because it has been elaborated longer, it has more work based on its measurements, thus allowing the results obtained here to be compared in the future.
- 
- The selection of digital filters to remove noise from signals
- before the processing may greatly influence the results.
- A band-pass filter is needed.  Uterine EMG signals are filtered in order to exclude
- most components of motion, respiration and cardiac signals, which yields a narrow ‘uterinespecific’ band of 0.34–1.00 Hz \cite{ref-lucovnik}.
- 
- Wavelets have been growing in popularity as an alternative to the usual Fourier transform method.
- The wavelet transform can essentially be divided into discrete and continuous forms. It efficiently transforms the signals with a flexible resolution in both time- and frequency-domains. The DWT method has been successful in analyzing non-stationary signals,
- such as surface EMG (sEMG) signals, but it yields a high-dimensional feature vector \cite{ref-chu}.
- 
- Successive low-pass and high pass filtering in the discrete-time domain computes the DWT. The
- general equation of DWT (Equation (\ref{eq1})), is given below:
- 
- 
- \begin{equation}
- 	\begin{array}{ccc}
- 		
- 		x(t) = \sum_{k=-\infty}^{\infty }\sum_{l=-\infty}^{\infty }d(k,l)2^{\frac{k}{2}}\psi(2^{-k}t-1)
- 		
- 		
- 	\end{array}
- 	\label{eq1}
- \end{equation}
- 
- where ($\psi$) is the ‘mother wavelet’ which can be taken as a band-pass function.
- 
- Removing the  interference of random noises from EMG signals (for example, white Gaussian noise (WGN)) using
- filtering procedures is difficult. Wavelet de-noising algorithms can effectively remove these noises \cite{ref-Phinyomark}. Selecting the right wavelet function is the most crucial part of
- wavelet de-noising, which in turn depends on a number of factors, such as the type of application and
- characteristics of the signal. By investigating and analyzing various research studies on wavelet transform, the author of \cite{ref-Chowdhury} has concluded that analyzing sEMG signals using Daubechies’s function renders successful results. For obtaining better results from a sEMG analysis on different applications, the author of \cite{ref-Chowdhury} recommends to use the db function (db2, db4, db6, db44 and db45) at decomposition level 4. So db4 at level 4 was chosen in this work.
- 
- \subsection{EMG Features}
- 
- 
- 
- 
- \subsection{Segmentation}
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
+The measurements of EHG were performed using a sixteen channel multi-purpose physiological signal recorder (Embla A10), most commonly used for investigating sleep disorders. An anti-aliasing filter with a high cut-off frequency of 100 Hz was used but no high pass filter was used. The signal sampling rate was 200 Hz and the signal was digitized to 16 bits.  \cite{ref-islddatabase}.
 
  
+
+\subsection{The Fuzzy Logic}
+ 
+Unlike in the boolean logic, in the fuzzy logic the variables can assume more than 2 values (true and false). That is, it can work in the concept where the truth can range between the completely true to completely false \cite{ref-novak}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methods}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pre-Processing}
+
+The selection of digital filters to remove noise from signals before the processing may greatly influence the results. A band-pass filter is needed.  Uterine EMG signals are filtered in order to exclude most components of motion, respiration and cardiac signals, which yields a narrow ‘uterinespecific’ band of 0.34–1.00 Hz \cite{ref-lucovnik}.
+
+
+
+\subsection{EMG Features}
+
+Write.
+
+
+\subsection{Segmentation}
+
+Write.
+
+
+
+
+
+
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -327,15 +230,6 @@ The text continues here.
 \subsection{Figures, Tables and Schemes}
 
 All figures and tables should be cited in the main text as Figure 1, Table 1, etc.
-
- \begin{figure}[H]
- 	\caption{\label{beer}This is a figure, Schemes follow the same formatting. If there are multiple panels, they should be listed as: (\textbf{a}) Description of what is contained in the first panel. (\textbf{b}) Description of what is contained in the second panel. Figures should be placed in the main text near to the first time they are cited. A caption on a single line should be centered.}
- 	\begin{center}
- 		\includegraphics[scale=0.40]{imagens/beer.jpg} 		
- 	\end{center}
- 	%\legend{\cite[]{pll analog}}
- \end{figure}  
-
 
 
 \begin{table}[H]
