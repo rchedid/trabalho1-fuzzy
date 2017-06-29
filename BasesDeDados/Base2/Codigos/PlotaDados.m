@@ -8,7 +8,7 @@ close all;
 
 %OBS: Ao trocar de arquivo deve-se alterar o axis dos plots RAW
 
-load('C:\BASES_DE_DADOS\icelandic16ehgmat\ice002_p_1of3m.mat');
+load('C:\Icelandic\mio\ice002_p_1of3m.mat');
 
 % PARAMETROS
 taxaAquisicao = 200;
@@ -43,8 +43,8 @@ lgd = legend('show');
 lgd.FontSize = 16;
 
 %sinalRAW = RetiraDC(sinalRAW);
-sinalFiltrado = FiltroPA(sinalRAW, 0.35, 200, 6);
-sinalFiltrado = FiltroPB(sinalFiltrado, 1, 200, 6);
+sinalFiltrado = FiltroPA(sinalRAW, 0.07, 200, 4);
+%sinalFiltrado = FiltroPB(sinalFiltrado, 2, 200, 6);
 %sinalFiltrado = FiltroPA(sinalFiltrado, 0.1, 200, 2);
 
 %FFT
@@ -55,14 +55,14 @@ sinalFiltrado = sinalFiltrado(30000:end); %Retira parte distorcida pelo filtro
 L=length(sinalFiltrado);
 NFFT=1048576; %NFFT-point DFT	 	 
 X=fft(sinalFiltrado,NFFT); %compute DFT using FFT	
-% X(1) = 0; %Retira Freq 0
+X(1) = 0; %Retira Freq 0
 Px=X.*conj(X)/(NFFT*L); %Power of each freq components	 
 fVals=taxaAquisicao*(0:NFFT/2-1)/NFFT;	
 plot(fVals,Px(1:NFFT/2),'b','LineSmoothing','on','LineWidth',1);	 	 
 title('One Sided Power Spectral Density');	 	 
 xlabel('Frequency (Hz)')	 	 
 ylabel('PSD');
-axis([0 100 0 0.0000001]);
+axis([0 100 0 0.000001]);
 
 figure('pos',[50 50 900 600]);
 plot(sinalFiltrado);

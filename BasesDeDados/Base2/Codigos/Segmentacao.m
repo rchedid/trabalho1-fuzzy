@@ -4,7 +4,10 @@ clc
 clearvars;
 close all;
 
-nome = 'ice001_l_1of1';
+canal = 1;
+mult = 500;
+
+nome = 'ice031_l_3of3';
 
 %% Carrega arquivo de tocodinamometria e miografia
 path_toco = 'C:\Icelandic\toco\';
@@ -41,13 +44,13 @@ for i = 1:4
 end
 figure
 hold
-plot(samples,sinal_mio_diferencial(1,:)*100)
+plot(samples,(sinal_mio_diferencial(canal,:)*mult))
 plot(samples,sinal_toco - min(sinal_toco),'linewidth',2)
-xlim([2500 size(samples,2) - 1000])
-ylim([0 100]);
-legend('Sinal EMG (100mV)','Sinal Tocodinamômetro (mmHg)')
+%xlim([2500 size(samples,2) - 1000])
+ylim([0 80]);
+legend('Sinal EMG (mV)','Sinal Tocodinamômetro (mmHg)')
 xlabel('Amostras');
-%{
+
 figure
 for n = 1:12
     
@@ -57,4 +60,9 @@ for n = 1:12
     xlim([2500 size(samples,2)])
     
 end
-%}
+
+%% filtro
+
+
+
+
