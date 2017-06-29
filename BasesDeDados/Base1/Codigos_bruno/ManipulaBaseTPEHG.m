@@ -1,4 +1,4 @@
-% Código para manipular dados da base TPEHG
+                      % Código para manipular dados da base TPEHG
 
 clc
 clearvars;
@@ -6,7 +6,7 @@ close all;
 
 path = 'C:\tpehgdb\';
 prefix = 'tpehg';
-file = '618';
+file = '553';
 extension = '.dat';
 
 fid = fopen(strcat(path,prefix,file,extension),'r'); % abre arquivo .dat

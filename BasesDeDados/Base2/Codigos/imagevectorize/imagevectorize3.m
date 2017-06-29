@@ -4,10 +4,10 @@ clc
 clearvars;
 close all;
 
-h80 = 91; %% altura do 80mmhg em pixels
+h80 = 72; %% altura do 80mmhg em pixels
 
-filename = 'ice028_p_3of3';
-path = 'imagens\nao_trabalho\';
+filename = 'ice031_l_3of3';
+path = 'imagens\trabalho\';
 ext = '.jpg';
 toco = '_toco';
 
@@ -74,9 +74,7 @@ for eixo_x = 1:size(matrix,2); %varre a imagem no eixo x
          eixo_x_func = eixo_x_func + 1; %indexa a função após encontrar o primeiro 'um' 
          %func(1,eixo_x_func) = virt;
          func(2,eixo_x_func) = 0;
-    end
-    
-    
+    end    
     sum = 0; conta_uns = 0; tem_um = 0; %apaga para a proxima iteração    
 end
 

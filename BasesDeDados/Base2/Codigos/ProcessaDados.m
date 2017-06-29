@@ -4,8 +4,8 @@ clc
 clear all;
 close all;
 
-caminho = 'C:\BASES_DE_DADOS\icelandic16ehgmat\';
-arquivo = 'ice028_p_3of3m';
+caminho = 'C:\Icelandic\mio\';
+arquivo = 'ice001_l_1of1m';
 extensao = '.mat';
 
 load(strcat(caminho,arquivo,extensao));
