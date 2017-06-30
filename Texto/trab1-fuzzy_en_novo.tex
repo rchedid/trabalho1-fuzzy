@@ -138,6 +138,8 @@ The purpose of this work is to evaluate the possibility of detect if the pregnan
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials}
 
+In this chapter, the database used to perform the experiment is described. The data used in this work was processed entirely in Matlab 2016 software.
+
 \subsection{The Icelandic 16-electrode Electrohysterogram Database}
 
 To perform this work, a 16-channel EHG signal database called "The Icelandic 16-electrode Electrohysterogram Database", available from the Physionet repository, was used.
@@ -167,19 +169,38 @@ A tocodynamometer was also attached to the abdomen during recordings. For pregna
 \end{figure}
 
 The measurements of EHG were performed using a sixteen channel multi-purpose physiological signal recorder (Embla A10), most commonly used for investigating sleep disorders. An anti-aliasing filter with a high cut-off frequency of 100 Hz was used but no high pass filter was used. The signal sampling rate was 200 Hz and the signal was digitized to 16 bits.  \cite{ref-islddatabase}.
-
- 
-
-\subsection{The Fuzzy Logic}
- 
-Unlike in the boolean logic, in the fuzzy logic the variables can assume more than 2 values (true and false). That is, it can work in the concept where the truth can range between the completely true to completely false \cite{ref-novak}
- 
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methods}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The signals from the base were analyzed graphically and a series of processing were identified to use the signals in a classification system. After the processing, characteristics of the segmented signals were extracted and used to identify labor.
+
+\subsection{Signal Analysis}
+
+To obtain knowledge of the behavior of the database signals, graphs of the 16 channels were generated, which can be visualized in the Figure \ref{monopolar_channels_raw}. Cada canal foi plotado com um offset, a fim de melhorar a visualização de todos os canais.
+
+\begin{figure}[H]
+	\caption{\label{monopolar_channels_raw} The 16 raw channels.}
+	\begin{center}
+		\includegraphics[scale=0.80]{imagens/base2/monopolarChannelsRAW.png} 		
+	\end{center}
+	%\legend{\cite{ref-islddatabase}}
+\end{figure}
+
+In the figure \ref{monopolar_channels_raw}, a very different behavior is observed in the signals compared to what is typically acquired with electromyography. This behavior occurs because the frequency band of the equipment used is DC up to 100Hz. The DC level of the signal varies without a standard, which can be verified in the decay of the signal baseline. There are also regions in the signs that resemble the waveform of muscle contractions obtained with electromyography. For example, the channel 16, between 50 and 75 seconds, it is possible to check this behavior.
+
+
+
+O nível de ruído desses sinais é muito grande, o que é esperado em aquisições realizadas em configuração monopolar. Processamentos e filtragens são necessários para melhorar a qualidade dos sinais.
+
 \subsection{Pre-Processing}
+
+
+
+
+
+
+\subsubsection{Filtering}
 
 The selection of digital filters to remove noise from signals before the processing may greatly influence the results. A band-pass filter is needed.  Uterine EMG signals are filtered in order to exclude most components of motion, respiration and cardiac signals, which yields a narrow ‘uterinespecific’ band of 0.34–1.00 Hz \cite{ref-lucovnik}.
 
@@ -196,7 +217,9 @@ Write.
 
 
 
+\subsection{The Fuzzy Logic}
 
+Unlike in the boolean logic, in the fuzzy logic the variables can assume more than 2 values (true and false). That is, it can work in the concept where the truth can range between the completely true to completely false \cite{ref-novak}
 
 
  
