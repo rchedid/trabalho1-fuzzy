@@ -1,30 +1,30 @@
 % Código para automatizar extracao de features
-
 clc;
 clearvars;
 close all;
 
 %% CARREGA ARQUIVOS COM OS INTERVALOS DAS CONTRAÇÕES
-diretorio = 'C:\Users\bruno\Desktop\trabalho1-fuzzy\BasesDeDados\Base1\Codigos_bruno\SegmentacaoManual\';
-pre_files = dir(strcat(diretorio,'pre\'));
-term_files = dir(strcat(diretorio,'term\'));
+diretorio = 'C:\Icelandic\timestamp\';
+labour_files = dir(strcat(diretorio,'labour\'));
+nonlabour_files = dir(strcat(diretorio,'nonlabour\'));
 
-for i = 3:size(pre_files,1)
-    pre_files(i).name
-    pre{i-2} = dlmread(strcat(diretorio,'pre\',pre_files(i).name));
+for i = 3:size(labour_files,1)       
+    aa.i = strrep(labour_files(i).name,'txt','mat')
+    labour{i-2} = dlmread(strcat(diretorio,'labour\',labour_files(i).name));
 end
 
-for i = 3:size(term_files,1)
-    term{i-2} = dlmread(strcat(diretorio,'term\',term_files(i).name));
+for i = 3:size(nonlabour_files,1)
+    arquivo_nonlabour(i-2) = strrep(nonlabour_files(i).name,'txt','mat')
+    nonlabour{i-2} = dlmread(strcat(diretorio,'nonlabour\',nonlabour_files(i).name));
 end
 
 
 %% CARREGA SINAIS A PARTIR DOS ARQUIVOS DAS CONTRAÇÕES
-path = 'C:\tpehgdb\';
+path = 'C:\Icelandic\mio\';
 
-for i = 1:size(pre,2)
+for i = 1:size(labour,2)
     
-    file = num2str(pre{i}(1));
+    file = num2str(labour{i}(1));
 
     fid = fopen(strcat(path,'tpehg',file,'.dat'),'r'); % abre arquivo .dat
     sinais_pre{i} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
@@ -47,15 +47,15 @@ end
 %Parâmetros básicos
 taxaAquisicao = 20; %Taxa de aquisição da base de dados
 
-for j = 1:size(pre,2)
+for j = 1:size(labour,2)
     coleta = j;
     
-    inicio_c = pre{j}(2,:);
-    fim_c = pre{j}(3,:);
+    inicio_c = labour{j}(2,:);
+    fim_c = labour{j}(3,:);
 
-    canal_analizado = pre{j}(4);              %Seleciona o canal que se quer segmentar
+    canal_analizado = labour{j}(4);              %Seleciona o canal que se quer segmentar
 
-    sem_parto = pre{j}(5);
+    sem_parto = labour{j}(5);
     
     sinais = sinais_pre{j};
     
