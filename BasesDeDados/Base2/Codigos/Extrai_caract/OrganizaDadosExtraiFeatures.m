@@ -9,12 +9,12 @@ labour_files = dir(strcat(diretorio,'labour\'));
 nonlabour_files = dir(strcat(diretorio,'nonlabour\'));
 
 for i = 3:size(labour_files,1)       
-    aa.i = strrep(labour_files(i).name,'txt','mat')
+    labour_name{i-2} = strrep(labour_files(i).name,'.txt','m.mat');
     labour{i-2} = dlmread(strcat(diretorio,'labour\',labour_files(i).name));
 end
 
 for i = 3:size(nonlabour_files,1)
-    arquivo_nonlabour(i-2) = strrep(nonlabour_files(i).name,'txt','mat')
+    nonlabour_name{i-2} = strrep(nonlabour_files(i).name,'.txt','m.mat');
     nonlabour{i-2} = dlmread(strcat(diretorio,'nonlabour\',nonlabour_files(i).name));
 end
 
@@ -24,20 +24,20 @@ path = 'C:\Icelandic\mio\';
 
 for i = 1:size(labour,2)
     
-    file = num2str(labour{i}(1));
+    file = labour_name{i};
 
-    fid = fopen(strcat(path,'tpehg',file,'.dat'),'r'); % abre arquivo .dat
-    sinais_pre{i} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
+    fid = fopen(strcat(path,file),'r'); % abre arquivo .mat
+    sinais_labour{i} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
     fclose(fid);
 
 end
 
-for i = 1:size(term,2)
+for i = 1:size(nonlabour,2)
     
-    file = num2str(term{i}(1));
+    file = nonlabour_name{i};
 
-    fid = fopen(strcat(path,'tpehg',file,'.dat'),'r'); % abre arquivo .dat
-    sinais_term{i} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
+    fid = fopen(strcat(path,file),'r'); % abre arquivo .mat
+    sinais_nonlabour{i} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
     fclose(fid);
 
 end
@@ -45,7 +45,7 @@ end
 %%%% PARAMETROS
 
 %Parâmetros básicos
-taxaAquisicao = 20; %Taxa de aquisição da base de dados
+taxaAquisicao = 200; %Taxa de aquisição da base de dados
 
 for j = 1:size(labour,2)
     coleta = j;
@@ -57,7 +57,7 @@ for j = 1:size(labour,2)
 
     sem_parto = labour{j}(5);
     
-    sinais = sinais_pre{j};
+    sinais = sinais_labour{j};
     
         %% FILTRO E DESCARTE DO INICIO DO SINAL
 
