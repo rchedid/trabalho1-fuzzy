@@ -64,7 +64,7 @@ ORDEM = 4; % ordem do filtro
     
 % LABOUR    
 
-for n_arq_labour = 1:2%size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+for n_arq_labour = 1:size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
     
     for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
         
@@ -77,9 +77,9 @@ end
 
 % NONLABOUR 
 
-%{
 
-for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_labour é o índice para todos os arquivos labour
+
+for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour
     
     for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
         
@@ -90,13 +90,13 @@ for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_labour é o índice 
     end    
 end
 
-%}
+
 
 %% SEGMENTAÇÃO DOS SINAIS E ARMAZENAMENTO EM CÉLULA
 
 %LABOUR
 
-for n_arq_labour = 1:2 % size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+for n_arq_labour = 1:size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
     
     inicio_c = intervalos_labour{n_arq_labour}(2,:);  %inicio das contrações para todos os canais do arquivo "n"
     fim_c = intervalos_labour{n_arq_labour}(3,:);     %fim das contrações para todos os canais do arquivo "n"
@@ -117,9 +117,9 @@ end
 
 %NONLABOUR
 
-%{
 
-for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_labour é o índice para todos os arquivos labour
+
+for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour
     
     inicio_c = intervalos_nonlabour{n_arq_nonlabour}(2,:);  %inicio das contrações para todos os canais do arquivo "n"
     fim_c = intervalos_nonlabour{n_arq_nonlabour}(3,:);     %fim das contrações para todos os canais do arquivo "n"
@@ -138,14 +138,16 @@ for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_labour é o índice 
     end    
 end
 
-%}
 
-clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisicao
 
-%% Cálculo das características 
+clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisicao intervalos_labour intervalos_nonlabour
 
-%LABOUR
+%% PLOTA OS SEGMENTOS
 
+plotar = 0;  % Se quer plotar os segmentos: 1, se não quer: 0
+
+    %LABOUR
+if plotar
     for n_arq_labour = 1:size(segmentos_totais_labour,2)  % n_arq_labour é o índice para todos os arquivos labour
     
         l_plot = size(segmentos_totais_labour{n_arq_labour},2);   % Gera a disposição dos subplots automaticamente
@@ -159,7 +161,7 @@ clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisic
         l_plot = aux;
     
     
-        for n_canal = 1:2%12  % índice dos canais analizados (para a base icelandic será sempre 12)  <<<<<<<<<<<<<<<<<<<<<<<<
+        for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)  
 
             figure;
 
@@ -178,11 +180,9 @@ clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisic
         end    
     end
     
-    %NONLABOUR
+    %NONLABOUR 
     
-    %{
-    
-    for n_arq_nonlabour = 1:size(segmentos_totais_nonlabour,2)  % n_arq_labour é o índice para todos os arquivos labour
+    for n_arq_nonlabour = 1:size(segmentos_totais_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour
     
         l_plot = size(segmentos_totais_nonlabour{n_arq_nonlabour},2);   % Gera a disposição dos subplots automaticamente
         aux = round(sqrt(l_plot));
@@ -195,7 +195,7 @@ clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisic
         l_plot = aux;
     
     
-        for n_canal = 1:2  % índice dos canais analizados (para a base icelandic será sempre 12) 
+        for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12) 
 
             figure;
 
@@ -212,18 +212,17 @@ clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisic
                 
             end         
         end    
-    end
+    end 
+end    
     
-    %}
-    
-clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisicao    
+clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisicao intervalos_labour intervalos_nonlabour   
     
 %% EXTRAI FEATURES 
 
 % LABOUR
-for n_arq_labour = 1:2 % size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+for n_arq_labour = 1:size(segmentos_totais_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
+    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)  
         
         for n_segmento = 1:size(segmentos_totais_labour{n_arq_labour},2) 
             
@@ -248,15 +247,15 @@ for n_arq_labour = 1:2 % size(intervalos_labour,2)  % n_arq_labour é o índice pa
             segmentos_totais_labour{n_arq_labour}{n_segmento}{4,n_canal}(1,:) = freq(index);
             
             %Extraindo Sample Entropy
-            %segmentos_totais_labour{n_arq_labour}{n_segmento}{5,n_canal}(1,:) = SampEn(auxi,2,0.2); % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            segmentos_totais_labour{n_arq_labour}{n_segmento}{5,n_canal}(1,:) = 1; %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        
+            segmentos_totais_labour{n_arq_labour}{n_segmento}{5,n_canal}(1,:) = SampEn(auxi,2,0.2); % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            %segmentos_totais_labour{n_arq_labour}{n_segmento}{5,n_canal}(1,:) = 1; %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        
         end        
     end    
 end
 
 % NONLABOUR
-%{
-for n_arq_nonlabour = 1:2 % size(intervalos_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos labour <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+for n_arq_nonlabour = 1:size(segmentos_totais_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour 
     
     for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
         
@@ -283,17 +282,78 @@ for n_arq_nonlabour = 1:2 % size(intervalos_nonlabour,2)  % n_arq_nonlabour é o 
             segmentos_totais_nonlabour{n_arq_nonlabour}{n_segmento}{4,n_canal}(1,:) = freq(index);
             
             %Extraindo Sample Entropy
-            %segmentos_totais_nonlabour{n_arq_nonlabour}{n_segmento}{5,n_canal}(1,:) = SampEn(auxi,2,0.2); % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            segmentos_totais_nonlabour{n_arq_nonlabour}{n_segmento}{5,n_canal}(1,:) = 1; %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        
+            segmentos_totais_nonlabour{n_arq_nonlabour}{n_segmento}{5,n_canal}(1,:) = SampEn(auxi,2,0.2); % <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            %segmentos_totais_nonlabour{n_arq_nonlabour}{n_segmento}{5,n_canal}(1,:) = 1; %<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<        
         end        
     end    
 end
 
-%}
 
-for n_arq_labour = 1:size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour
-    
+
+clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisicao intervalos_labour intervalos_nonlabour 
+
+% LABOUR
+% pega duração média das contrações em segundos
+clearvars auxi interv
+for n_arq_labour = 1:size(segmentos_totais_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
+    for n_segmento = 1:size(segmentos_totais_labour{1,n_arq_labour},2)
+        auxi(n_segmento) = segmentos_totais_labour{1,n_arq_labour}{1,n_segmento}{1}(2,end); %salva duração de cada contração
+        segmentos_totais_labour{1,n_arq_labour}{2,n_segmento} = auxi(n_segmento);
+    end
+    segmentos_totais_labour{2,n_arq_labour} = mean(auxi); % salva duração média das contrações do arquivo
 end
+
+% pega frequência entre as contrações em Hz e o intervalo médio entre elas
+clearvars auxi interv
+for n_arq_labour = 1:size(segmentos_totais_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
+    clearvars inicio_c fim_c
+    inicio_c = intervalos_labour{1,n_arq_labour}(2,:);
+    fim_c = intervalos_labour{1,n_arq_labour}(3,:);
+    
+    for n_segmento = 1:size(inicio_c,2)-1
+        auxi(n_segmento) = ((fim_c(n_segmento+1)  + inicio_c(n_segmento+1)) - (fim_c(n_segmento)  + inicio_c(n_segmento)))/2;
+        interv(n_segmento) = inicio_c(n_segmento+1) - fim_c(n_segmento); %%
+    end
+    segmentos_totais_labour{3,n_arq_labour} = 1/(((sum(auxi)/taxaAquisicao)/(size(fim_c,2)-1))); % salva frequência média das contrações do arquivo
+    segmentos_totais_labour{4,n_arq_labour} = (sum(interv)/(size(fim_c,2)-1))/taxaAquisicao; %% salva intervalo média das contrações do arquivo
+end
+
+%NONLABOUR
+% pega duração média das contrações em segundos
+
+clearvars auxi interv
+for n_arq_nonlabour = 1:size(segmentos_totais_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour 
+    for n_segmento = 1:size(segmentos_totais_nonlabour{1,n_arq_nonlabour},2)
+        auxi(n_segmento) = segmentos_totais_nonlabour{1,n_arq_nonlabour}{1,n_segmento}{1}(2,end); %salva duração de cada contração
+        segmentos_totais_nonlabour{1,n_arq_nonlabour}{2,n_segmento} = auxi(n_segmento);
+    end
+    segmentos_totais_nonlabour{2,n_arq_nonlabour} = mean(auxi); % salva duração média das contrações do arquivo
+end
+
+% pega frequência entre as contrações em Hz
+clearvars auxi interv
+for n_arq_nonlabour = 1:size(segmentos_totais_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour 
+    clearvars inicio_c fim_c
+    inicio_c = intervalos_nonlabour{1,n_arq_nonlabour}(2,:);
+    fim_c = intervalos_nonlabour{1,n_arq_nonlabour}(3,:);
+    
+    for n_segmento = 1:size(inicio_c,2)-1
+        auxi(n_segmento) = ((fim_c(n_segmento+1)  + inicio_c(n_segmento+1)) - (fim_c(n_segmento)  + inicio_c(n_segmento)))/2;
+        interv(n_segmento) = inicio_c(n_segmento+1) - fim_c(n_segmento); %%
+    end
+    segmentos_totais_nonlabour{3,n_arq_nonlabour} = 1/(((sum(auxi)/taxaAquisicao)/(size(fim_c,2)-1))); % salva frequencia média das contrações do arquivo
+    segmentos_totais_nonlabour{4,n_arq_nonlabour} = (sum(interv)/(size(fim_c,2)-1))/taxaAquisicao; %% salva intervalo média das contrações do arquivo
+end
+
+
+
+clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisicao intervalos_labour intervalos_nonlabour 
+
+    
+aa = 1+1;
+
+
+
     %{
 
     % Pega valor máximo, mínimo e médio do RMS
@@ -316,27 +376,7 @@ end
     samp_en_max = max(samp_en);
     samp_en_med = mean(samp_en);
 
-%}
 
-    % pega duração média das contrações em segundos
-    for n_canal = 1:size(fim_c,2)
-        duracao_seg(n_segmento) = fim_c(n_segmento)  - inicio_c(n_segmento);
-    end
-    duracao_med = mean(duracao_seg)*periodo_amostra;
-
-    % pega frequência entre as contrações em Hz
-    for n_segmento = 1:size(fim_c,2)-1
-        %inter_centr(i) = ( (((fim_c(i+1) + inicio_c(i+1))/2)+inicio_c(i+1)) - (((fim_c(i) + inicio_c(i))/2)+inicio_c(i)) );
-        inter_centr(n_segmento) = ((fim_c(n_segmento+1)  + inicio_c(n_segmento+1)) - (fim_c(n_segmento)  + inicio_c(n_segmento)))/2;
-    end    
-    freq_med = 1/((sum(inter_centr)/(size(fim_c,2)-1))*periodo_amostra);
-
-    % pega intervalo entre inicio e fim de cada contração em segundos
-    for n_segmento = 1:size(fim_c,2)-1
-        inter(n_segmento) = inicio_c(n_segmento+1) - fim_c(n_segmento); %     ((fim_c(i+1)  + inicio_c(i+1)) - (fim_c(i)  + inicio_c(i)))/2;
-    end 
-    
-    intervalo_med = (sum(inter)/(size(fim_c,2)-1))*periodo_amostra;
 
 
 
@@ -351,9 +391,9 @@ end
     xlswrite('FeaturesContracoes.xlsx',caracteristicas(coleta,:),'Features',posicao_excel);
 
 
+%}
 
 
 
 
 
-clearvars -except caracteristicas duracao_med intervalo_med freq_med rms_min rms_max rms_med var_min var_max var_med  %deixar aqui só o que nos interessa
