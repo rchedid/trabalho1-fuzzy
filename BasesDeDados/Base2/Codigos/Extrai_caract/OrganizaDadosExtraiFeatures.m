@@ -27,7 +27,7 @@ for n_canal = 1:size(intervalos_labour,2)
     file = labour_name{n_canal};
 
     fid = fopen(strcat(path,file),'r'); % abre arquivo .mat
-    sinais_labour{n_canal} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
+    sinais_labour{n_canal} = double(fread(fid,[16,inf],'*int16')); % lê os sinais do arquivo em int16
     fclose(fid);
 
 end
@@ -37,7 +37,7 @@ for n_canal = 1:size(intervalos_nonlabour,2)
     file = nonlabour_name{n_canal};
 
     fid = fopen(strcat(path,file),'r'); % abre arquivo .mat
-    sinais_nonlabour{n_canal} = double(fread(fid,[12,inf],'*int16')); % lê os sinais do arquivo em int16
+    sinais_nonlabour{n_canal} = double(fread(fid,[16,inf],'*int16')); % lê os sinais do arquivo em int16
     fclose(fid);
 
 end
@@ -47,6 +47,40 @@ taxaAquisicao = 200; %Taxa de aquisição da base de dados
 periodo_amostral = 1/taxaAquisicao;
 
 clearvars -except sinais_labour sinais_nonlabour intervalos_labour intervalos_nonlabour taxaAquisicao periodo_amostral
+
+%% PLOT DOS SINAIS
+
+for arquivo = 1:4
+    figure
+    hold
+    for i = 1:16
+        plot(sinais_labour{1,arquivo}(i,10:end));
+    end
+    title(sprintf('Arquivo %d - labour',arquivo));
+end
+
+for arquivo = 1:4
+    figure
+    hold
+    for i = 1:16
+        plot(sinais_nonlabour{1,arquivo}(i,10:end));
+    end
+    title(sprintf('Arquivo %d - non labour',arquivo));
+end
+
+%% CRIACAO DOS 8 CANAIS BIPOLARES
+
+% Sinais calculados pela subtracao de dois canais monopolares
+
+for arquivo = 1:4
+    for i = 1:8
+        sinais_labour_bip{1,arquivo}(i,:) = sinais_labour{1,arquivo}(i*2,1:end) ...
+            - sinais_labour{1,arquivo}((i*2)-1,1:end);
+        
+        sinais_nonlabour_bip{1,arquivo}(i,:) = sinais_nonlabour{1,arquivo}(i*2,1:end) ...
+            - sinais_nonlabour{1,arquivo}((i*2)-1,1:end);
+    end
+end
 
 %% TRATAMENTO DO SINAL ADQUIRIDO
 
@@ -66,9 +100,9 @@ ORDEM = 4; % ordem do filtro
 
 for n_arq_labour = 1:size(intervalos_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
+    for n_canal = 1:8  % índice dos canais analizados (8 bipolares)
         
-        sinais_labour_filt{n_arq_labour}(n_canal,:) = FiltroPA(sinais_labour{n_arq_labour}(n_canal,:),0.35,taxaAquisicao,ORDEM); %siltra o sinal
+        sinais_labour_filt{n_arq_labour}(n_canal,:) = FiltroPA(sinais_labour_bip{n_arq_labour}(n_canal,:),0.35,taxaAquisicao,ORDEM); %siltra o sinal
         sinais_labour_filt{n_arq_labour}(n_canal,:) = FiltroPB(sinais_labour_filt{n_arq_labour}(n_canal,:),1,taxaAquisicao,ORDEM);
         sinais_labour_mv{n_arq_labour}(n_canal,:) = sinais_labour_filt{n_arq_labour}(n_canal,:).*5./(2^16); %gera os sinais em milivolts 
         %sinais_labour_mv_dwt{n_arq_labour}(n_canal,:) = wden(sinais_labour_mv{n_arq_labour}(n_canal,:),TPTR,SORH,SCAL,N,wname); % faz transformada de wavelet no sinal
@@ -81,15 +115,35 @@ end
 
 for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
+    for n_canal = 1:8 
         
-        sinais_nonlabour_filt{n_arq_nonlabour}(n_canal,:) = FiltroPA(sinais_nonlabour{n_arq_nonlabour}(n_canal,:),0.35,taxaAquisicao,ORDEM); %siltra o sinal
+        sinais_nonlabour_filt{n_arq_nonlabour}(n_canal,:) = FiltroPA(sinais_nonlabour_bip{n_arq_nonlabour}(n_canal,:),0.35,taxaAquisicao,ORDEM); %siltra o sinal
         sinais_nonlabour_filt{n_arq_nonlabour}(n_canal,:) = FiltroPB(sinais_nonlabour_filt{n_arq_nonlabour}(n_canal,:),1,taxaAquisicao,ORDEM);
         sinais_nonlabour_mv{n_arq_nonlabour}(n_canal,:) = sinais_nonlabour_filt{n_arq_nonlabour}(n_canal,:).*5./(2^16); %gera os sinais em milivolts 
         %sinais_nonlabour_mv_dwt{n_arq_nonlabour}(n_canal,:) = wden(sinais_nonlabour_mv{n_arq_nonlabour}(n_canal,:),TPTR,SORH,SCAL,N,wname); % faz transformada de wavelet no sinal
     end    
 end
 
+
+%% PLOT DOS SINAIS TRATADOS
+
+for arquivo = 1:4
+    figure
+    hold
+    for i = 1:8
+        plot(sinais_labour_mv{1,arquivo}(i,8000:end-2000));
+    end
+    title(sprintf('Arquivo Tratado %d - labour',arquivo));
+end
+
+for arquivo = 1:4
+    figure
+    hold
+    for i = 1:8
+        plot(sinais_nonlabour_mv{1,arquivo}(i,8000:end-2000));
+    end
+    title(sprintf('Arquivo Tratado %d - non labour',arquivo));
+end
 
 
 %% SEGMENTAÇÃO DOS SINAIS E ARMAZENAMENTO EM CÉLULA
@@ -101,7 +155,7 @@ for n_arq_labour = 1:size(intervalos_labour,2)  % n_arq_labour é o índice para t
     inicio_c = intervalos_labour{n_arq_labour}(2,:);  %inicio das contrações para todos os canais do arquivo "n"
     fim_c = intervalos_labour{n_arq_labour}(3,:);     %fim das contrações para todos os canais do arquivo "n"
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
+    for n_canal = 1:8
         
         for n_segmento = 1:size(intervalos_labour{n_arq_labour},2) 
             
@@ -116,15 +170,12 @@ for n_arq_labour = 1:size(intervalos_labour,2)  % n_arq_labour é o índice para t
 end
 
 %NONLABOUR
-
-
-
 for n_arq_nonlabour = 1:size(intervalos_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour
     
     inicio_c = intervalos_nonlabour{n_arq_nonlabour}(2,:);  %inicio das contrações para todos os canais do arquivo "n"
     fim_c = intervalos_nonlabour{n_arq_nonlabour}(3,:);     %fim das contrações para todos os canais do arquivo "n"
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
+    for n_canal = 1:8  
         
         for n_segmento = 1:size(intervalos_nonlabour{n_arq_nonlabour},2) 
             
@@ -144,7 +195,7 @@ clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisic
 
 %% PLOTA OS SEGMENTOS
 
-plotar = 0;  % Se quer plotar os segmentos: 1, se não quer: 0
+plotar = 1;  % Se quer plotar os segmentos: 1, se não quer: 0
 
     %LABOUR
 if plotar
@@ -161,7 +212,7 @@ if plotar
         l_plot = aux;
     
     
-        for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)  
+        for n_canal = 1:8   
 
             figure;
 
@@ -195,7 +246,7 @@ if plotar
         l_plot = aux;
     
     
-        for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12) 
+        for n_canal = 1:8 
 
             figure;
 
@@ -222,7 +273,7 @@ clearvars -except segmentos_totais_labour segmentos_totais_nonlabour taxaAquisic
 % LABOUR
 for n_arq_labour = 1:size(segmentos_totais_labour,2)  % n_arq_labour é o índice para todos os arquivos labour 
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)  
+    for n_canal = 1:8    
         
         for n_segmento = 1:size(segmentos_totais_labour{n_arq_labour},2) 
             
@@ -257,7 +308,7 @@ end
 
 for n_arq_nonlabour = 1:size(segmentos_totais_nonlabour,2)  % n_arq_nonlabour é o índice para todos os arquivos nonlabour 
     
-    for n_canal = 1:12  % índice dos canais analizados (para a base icelandic será sempre 12)
+    for n_canal = 1:8
         
         for n_segmento = 1:size(segmentos_totais_nonlabour{n_arq_nonlabour},2) 
             
